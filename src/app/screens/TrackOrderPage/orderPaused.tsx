@@ -2,9 +2,9 @@ import { Box, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typograph
 import { useRef, useState} from "react"
 import { stringSplitterHandler } from "../../components/features/stringSplitter"
 import { AddCircle, RemoveCircle } from "@mui/icons-material"
-import { OrderItem } from "../../types/order"
+import { OrderItem } from "../../../libs/types/order"
 import OrderServiceApi from "../../apiServices/orderServiceApi"
-import { serverApi } from "../../../lib/config"
+import { serverApi } from "../../../libs/config"
 
 //Redux
 import { createSelector } from "reselect"

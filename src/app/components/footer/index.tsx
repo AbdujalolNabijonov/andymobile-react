@@ -1,11 +1,12 @@
-import { Box, Stack } from "@mui/material"
-import "../../css/footer.css"
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert"
 import { useEffect, useRef } from "react"
-import { validEmailChecker } from "../../../lib/validEmails"
+import { Box, Stack } from "@mui/material"
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert"
+import { validEmailChecker } from "../../../libs/validEmails"
 import assert from "assert"
-import Definer from "../../../lib/Definer"
+import Definer from "../../../libs/Definer"
 import { useHistory } from "react-router-dom"
+import "../../css/footer.css"
+
 const Footer = () => {
     //Initializations
     const refs: any = useRef([])

@@ -3,13 +3,13 @@ import { Dispatch } from "@reduxjs/toolkit"
 
 //Redux
 import { createSelector } from "reselect"
-import { Bank } from "../../types/bank"
+import { Bank } from "../../../libs/types/bank"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useRef, useState } from "react"
 import TransactionServiceApi from "../../apiServices/transactionServiceApi"
 import { stringSplitterHandler } from "../../components/features/stringSplitter"
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert"
-import Definer from "../../../lib/Definer"
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert"
+import Definer from "../../../libs/Definer"
 import { setChosenBank } from "./slice"
 import { chosenBankCardRetrieve } from "./selector"
 

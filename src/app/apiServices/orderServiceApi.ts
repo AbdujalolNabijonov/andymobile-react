@@ -1,7 +1,7 @@
 import axios from "axios";
-import { serverApi } from "../../lib/config";
-import { Order, OrderItem } from "../types/order";
-import { Transaction } from "../types/bank";
+import { serverApi } from "../../libs/config";
+import { Order, OrderItem } from "../../libs/types/order";
+import { Transaction } from "../../libs/types/bank";
 
 class OrderServiceApi {
     private readonly path: string

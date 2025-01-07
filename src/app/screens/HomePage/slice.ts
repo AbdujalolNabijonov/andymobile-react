@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { HomePageState } from "../../types/screen";
+import { HomePageState } from "../../../libs/types/screen";
 
 
 const initialState: HomePageState = {

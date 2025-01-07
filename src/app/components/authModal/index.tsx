@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Backdrop, Fade, Modal } from "@material-ui/core"
 import { Box, Stack } from "@mui/material"
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert";
 import assert from "assert"
 import { MemberServiceApi } from "../../apiServices/memberServiceApi";
-import { SignUpMember } from "../../types/member";
-import Definer from "../../../lib/Definer";
+import { SignUpMember } from "../../../libs/types/member";
+import Definer from "../../../libs/Definer";
 import "./../../css/authModal.css"
 
 

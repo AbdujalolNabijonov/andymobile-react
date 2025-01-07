@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import { createSelector } from "reselect"
 import { Dispatch } from "@reduxjs/toolkit";
 import { setAllBrands, setTargetProducts, setTargetReviews } from "./slice";
-import { Product } from "../../types/product";
+import { Product } from "../../../libs/types/product";
 import { useDispatch, useSelector } from "react-redux";
 import ProductServiceApi from "../../apiServices/productServiceApi";
 import { allBrandsRetriever, targetProductsRetriever, targetReviewsRetrieve } from "./selector";
-import { Brand } from "../../types/member";
+import { Brand } from "../../../libs/types/member";
 import BrandsServiceApi from "../../apiServices/brandsServiceApi";
 import { Products } from "./products";
 import { ProductFilter } from "../../components/filters/productFilter";
@@ -17,7 +17,7 @@ import { useParams } from "react-router-dom";
 import { handleViewItem } from "../../components/features/viewItem";
 import ReviewWriting from "./reviewWriting";
 import ProductReview from "./productReview";
-import { Review } from "../../types/review";
+import { Review } from "../../../libs/types/review";
 import CommunityServiceApi from "../../apiServices/communityServiceApi";
 import { DownToUpBtn } from "../../components/features/downToUpBtn";
 

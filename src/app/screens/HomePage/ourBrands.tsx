@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Box, Container, Stack } from "@mui/material"
 import { Autoplay, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Brand } from "../../types/member"
+import { Brand } from "../../../libs/types/member"
 
 
 //Redux
@@ -10,7 +10,7 @@ import { Dispatch } from "@reduxjs/toolkit"
 import BrandsServiceApi from "../../apiServices/brandsServiceApi"
 import { createSelector } from "reselect"
 import { useDispatch, useSelector } from "react-redux"
-import { serverApi } from "../../../lib/config"
+import { serverApi } from "../../../libs/config"
 import { setTopRandomBrands } from "./slice"
 import { retrieveTopRandomBrands } from "./selector"
 import { useHistory } from "react-router-dom"

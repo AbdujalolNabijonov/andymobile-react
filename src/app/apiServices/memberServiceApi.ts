@@ -1,10 +1,10 @@
 import axios from "axios";
-import { Member, SignUpMember, UpdateMemberData } from "../types/member";
+import { Member, SignUpMember, UpdateMemberData } from "../../libs/types/member";
 import assert from "assert";
-import Definer from "../../lib/Definer";
-import { serverApi } from "../../lib/config"
-import { Product } from "../types/product";
-import { LikenItem, View, WishListItem } from "../types/others";
+import Definer from "../../libs/Definer";
+import { serverApi } from "../../libs/config"
+import { Product } from "../../libs/types/product";
+import { LikenItem, View, WishListItem } from "../../libs/types/others";
 
 export class MemberServiceApi {
     private readonly path: string

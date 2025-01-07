@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { OrderPage } from "../../types/screen";
+import { OrderPage } from "../../../libs/types/screen";
 
 const initialState: OrderPage = {
     targetOrders: [],

@@ -6,12 +6,12 @@ import { HomeProducts } from "./homeProducts";
 //REDUX
 import { createSelector } from "reselect";
 import { Dispatch } from "@reduxjs/toolkit";
-import { Product } from "../../types/product";
+import { Product } from "../../../libs/types/product";
 import { setTargetHomeProducts } from "./slice";
 import { retrieveTargetHomeProducts } from "./selector";
 import { useDispatch, useSelector } from "react-redux";
 import ProductServiceApi from "../../apiServices/productServiceApi";
-import { searchObjHome } from "../../types/others";
+import { searchObjHome } from "../../../libs/types/others";
 
 //Slice
 const actionDispatch = (dispatch: Dispatch) => (

@@ -1,8 +1,8 @@
 import axios from "axios";
-import { serverApi } from "../../lib/config";
-import { Message, searchBlogs } from "../types/others";
-import { Blog, BlogCreate, SearchObjBlog } from "../types/blog";
-import { Review, reviewCreateData } from "../types/review";
+import { serverApi } from "../../libs/config";
+import { Message, searchBlogs } from "../../libs/types/others";
+import { Blog, BlogCreate, SearchObjBlog } from "../../libs/types/blog";
+import { Review, reviewCreateData } from "../../libs/types/review";
 
 class CommunityServiceApi {
     private readonly path: string

@@ -1,11 +1,11 @@
 import { Box, Container, Pagination, PaginationItem, Stack } from "@mui/material";
-import { Product } from "../../types/product";
+import { Product } from "../../../libs/types/product";
 import { useEffect, useRef, useState } from "react";
-import { serverApi } from "../../../lib/config";
+import { serverApi } from "../../../libs/config";
 import { ArrowBack, ArrowForward, Favorite, RemoveRedEye } from "@mui/icons-material";
 import { stringSplitterHandler } from "../../components/features/stringSplitter";
 import { handleLikeItem } from "../../components/features/likeItem";
-import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import { sweetErrorHandling } from "../../../libs/sweetAlert";
 import { useHistory } from "react-router-dom";
 
 

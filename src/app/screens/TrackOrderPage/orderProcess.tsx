@@ -1,18 +1,18 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, Stack, Typography } from "@mui/material"
 import {useRef, useState } from "react"
-import { CardDetail, OrderItem } from "../../types/order"
+import { CardDetail, OrderItem } from "../../../libs/types/order"
 import { verifiedMemberData } from "../../apiServices/verified"
-import { sweetErrorHandling } from "../../../lib/sweetAlert"
-import Definer from "../../../lib/Definer"
+import { sweetErrorHandling } from "../../../libs/sweetAlert"
+import Definer from "../../../libs/Definer"
 import TransactionServiceApi from "../../apiServices/transactionServiceApi"
 import assert from "assert"
 
 //Redux
 import { createSelector } from "reselect"
-import { serverApi } from "../../../lib/config";
+import { serverApi } from "../../../libs/config";
 import { stringSplitterHandler } from "../../components/features/stringSplitter";
 
-import { Transaction } from "../../types/bank";
+import { Transaction } from "../../../libs/types/bank";
 import { useDispatch, useSelector } from "react-redux"
 import { chosenOrderRetrieve } from "./selector"
 import { Dispatch } from "@reduxjs/toolkit"

@@ -1,6 +1,6 @@
 import { Box, Rating, Stack } from "@mui/material";
-import { Review } from "../../types/review";
-import { serverApi } from "../../../lib/config";
+import { Review } from "../../../libs/types/review";
+import { serverApi } from "../../../libs/config";
 import Moment from "react-moment"
 import { useEffect, useRef, useState } from "react";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";

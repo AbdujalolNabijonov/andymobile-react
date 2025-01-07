@@ -7,7 +7,7 @@ import CommunityServiceApi from "../../apiServices/communityServiceApi"
 //Redux
 import { createSelector } from "reselect"
 import { Dispatch } from "@reduxjs/toolkit"
-import { Blog } from "../../types/blog"
+import { Blog } from "../../../libs/types/blog"
 import { setTargetBlogs } from "./slice"
 import { useDispatch, useSelector } from "react-redux"
 import { targetBlogsRetrieve } from "./selector"

@@ -10,12 +10,12 @@ import {
     Stack,
     Select,
 } from "@mui/material";
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert";
 import CommunityServiceApi from "../../apiServices/communityServiceApi";
-import { BlogCreate } from "../../types/blog";
-import { serverApi } from "../../../lib/config";
+import { BlogCreate } from "../../../libs/types/blog";
+import { serverApi } from "../../../libs/config";
 import assert from "assert";
-import Definer from "../../../lib/Definer";
+import Definer from "../../../libs/Definer";
 
 export const TuiEditor = (props: any) => {
     /** INITIALIZATIONS */

@@ -17,11 +17,11 @@ import { stringSplitterHandler } from "../../components/features/stringSplitter"
 import { Dispatch } from "@reduxjs/toolkit"
 import { createSelector } from "reselect"
 import { useDispatch, useSelector } from "react-redux"
-import { Product } from "../../types/product";
+import { Product } from "../../../libs/types/product";
 import { setChosenProduct, setProductReview } from "./slice";
 import { chosenProductRetriever, productReviewRetriever } from "./selector";
-import { serverApi } from "../../../lib/config";
-import { Review } from "../../types/review";
+import { serverApi } from "../../../libs/config";
+import { Review } from "../../../libs/types/review";
 import CommunityServiceApi from "../../apiServices/communityServiceApi";
 import { NewProducts } from "../HomePage/releasedProducts";
 import { AddCircle, Favorite, RemoveCircle } from "@mui/icons-material";
@@ -29,10 +29,10 @@ import { handleViewItem } from "../../components/features/viewItem";
 import { handleLikeItem } from "../../components/features/likeItem";
 import { handleBuyProduct } from "../../components/features/handleBuySingleItem";
 import { DownToUpBtn } from "../../components/features/downToUpBtn";
-import { BasketItem } from "../../types/order";
+import { BasketItem } from "../../../libs/types/order";
 import assert from "assert";
-import Definer from "../../../lib/Definer";
-import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import Definer from "../../../libs/Definer";
+import { sweetErrorHandling } from "../../../libs/sweetAlert";
 import KakaoMap from "../../components/features/kakaoMap";
 import { useKakaoLoader as useKakaoLoaderOrigin } from "react-kakao-maps-sdk";
 

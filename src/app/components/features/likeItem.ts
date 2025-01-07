@@ -1,5 +1,5 @@
-import Definer from "../../../lib/Definer";
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
+import Definer from "../../../libs/Definer";
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert";
 import { MemberServiceApi } from "../../apiServices/memberServiceApi";
 
 

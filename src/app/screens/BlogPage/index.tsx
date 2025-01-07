@@ -11,7 +11,7 @@ import "../../css/blogPage.css"
 //REDUX
 import { createSelector } from "reselect";
 import { Dispatch } from "@reduxjs/toolkit"
-import { Blog } from "../../types/blog"
+import { Blog } from "../../../libs/types/blog"
 import { setTargetBlogs } from "./slice"
 import { retrieveTargetBlogs } from "./selector"
 import { useDispatch, useSelector } from "react-redux"

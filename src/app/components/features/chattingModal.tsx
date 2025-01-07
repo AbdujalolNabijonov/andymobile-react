@@ -5,10 +5,10 @@ import Picker from '@emoji-mart/react'
 import { socketContext } from "../Context/socketIo";
 import { verifiedMemberData } from "../../apiServices/verified";
 import assert from "assert";
-import Definer from "../../../lib/Definer";
-import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import Definer from "../../../libs/Definer";
+import { sweetErrorHandling } from "../../../libs/sweetAlert";
 import CommunityServiceApi from "../../apiServices/communityServiceApi";
-import { Message } from "../../types/others";
+import { Message } from "../../../libs/types/others";
 import "../../css/chattingBadge.css";
 import { RippleBadge } from "./ripleBadge";
 

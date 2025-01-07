@@ -7,12 +7,12 @@ import Moment from "react-moment"
 //REDUX
 import { createSelector } from "reselect"
 import { Dispatch } from '@reduxjs/toolkit';
-import { Blog } from '../../types/blog';
+import { Blog } from '../../../libs/types/blog';
 import { setCommunityPost } from "./slice"
 import { retrieveCommunityPost } from './selector';
 import CommunityServiceApi from '../../apiServices/communityServiceApi';
 import { useDispatch, useSelector } from 'react-redux';
-import { serverApi } from '../../../lib/config';
+import { serverApi } from '../../../libs/config';
 import { useHistory } from 'react-router-dom';
 import { Favorite, FavoriteBorderRounded, FavoriteBorderTwoTone } from '@mui/icons-material';
 import { handleLikeItem } from '../../components/features/likeItem';

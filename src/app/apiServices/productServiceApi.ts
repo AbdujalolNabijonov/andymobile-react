@@ -1,8 +1,8 @@
 import axios from "axios"
-import { Product, ProductSearchObject } from "../types/product"
+import { Product, ProductSearchObject } from "../../libs/types/product"
 import assert from "assert";
-import Definer from "../../lib/Definer";
-import { serverApi } from "../../lib/config";
+import Definer from "../../libs/Definer";
+import { serverApi } from "../../libs/config";
 class ProductServiceApi {
     private readonly path: string
     constructor() {

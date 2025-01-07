@@ -1,9 +1,9 @@
 import { ArrowBack, ArrowForward, Comment, FavoriteTwoTone, RemoveRedEye } from "@mui/icons-material"
 import { Pagination, PaginationItem, Stack } from "@mui/material"
-import { Blog } from "../../types/blog"
-import { serverApi } from "../../../lib/config"
+import { Blog } from "../../../libs/types/blog"
+import { serverApi } from "../../../libs/config"
 import Moment from "react-moment"
-import { sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert"
+import { sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert"
 import CommunityServiceApi from "../../apiServices/communityServiceApi"
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";

@@ -1,10 +1,10 @@
 import { Box, Stack } from "@mui/material";
 import Slider, { SliderThumb } from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
-import { Brand } from "../../types/member";
-import { serverApi } from "../../../lib/config";
+import { Brand } from "../../../libs/types/member";
+import { serverApi } from "../../../libs/config";
 import { useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 
 const colorsList = [
     { color: "Black", index: "#000000" },

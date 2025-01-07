@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { Box, Stack } from "@mui/material"
 import { verifiedMemberData } from "../../apiServices/verified"
-import { sweetErrorHandling, sweetTopSmallSuccessAlert, sweetTopSuccessAlert } from "../../../lib/sweetAlert"
+import { sweetErrorHandling, sweetTopSmallSuccessAlert, sweetTopSuccessAlert } from "../../../libs/sweetAlert"
 import { MemberServiceApi } from "../../apiServices/memberServiceApi"
 import assert from "assert"
-import Definer from "../../../lib/Definer"
+import Definer from "../../../libs/Definer"
 
 
 export const MyAccount = () => {

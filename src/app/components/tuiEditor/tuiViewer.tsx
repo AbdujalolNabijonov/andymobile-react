@@ -11,7 +11,7 @@ import { chosenBlogRetrieve, targetReviewsRetrieve } from "../../screens/MyPage/
 import { useDispatch, useSelector } from "react-redux"
 import CommunityServiceApi from "../../apiServices/communityServiceApi"
 import { Dispatch } from "@reduxjs/toolkit"
-import { Review } from "../../types/review"
+import { Review } from "../../../libs/types/review"
 import { setTargetReviews } from "../../screens/MyPage/slice"
 
 

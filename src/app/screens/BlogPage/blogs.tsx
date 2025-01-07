@@ -2,9 +2,9 @@ import { Comment, Favorite, RemoveRedEye } from "@mui/icons-material"
 import { Box, Stack } from "@mui/material"
 import { useEffect, useRef, useState } from "react"
 import { Link, NavLink } from "react-router-dom"
-import { Blog } from "../../types/blog"
+import { Blog } from "../../../libs/types/blog"
 import Moment from "react-moment"
-import { serverApi } from "../../../lib/config"
+import { serverApi } from "../../../libs/config"
 import { handleLikeItem } from "../../components/features/likeItem"
 
 export const BlogsPage = (props: any) => {

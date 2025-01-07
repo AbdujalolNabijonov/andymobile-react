@@ -1,9 +1,9 @@
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { Box, Pagination, PaginationItem, Stack } from "@mui/material";
 import { Dispatch } from "@reduxjs/toolkit";
-import { FollowInterface } from "../../types/member";
-import { serverApi } from "../../../lib/config";
-import { sweetErrorHandling, sweetTopSuccessAlert } from "../../../lib/sweetAlert";
+import { FollowInterface } from "../../../libs/types/member";
+import { serverApi } from "../../../libs/config";
+import { sweetErrorHandling, sweetTopSuccessAlert } from "../../../libs/sweetAlert";
 import FollowServiceApi from "../../apiServices/followServiceApi";
 import { useEffect, useState } from "react";
 

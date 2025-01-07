@@ -1,8 +1,8 @@
 import axios from "axios";
-import { serverApi } from "../../lib/config"
-import { Bank, Transaction } from "../types/bank";
-import { BankInfoObj } from "../types/others";
-import { CardDetail } from "../types/order";
+import { serverApi } from "../../libs/config"
+import { Bank, Transaction } from "../../libs/types/bank";
+import { BankInfoObj } from "../../libs/types/others";
+import { CardDetail } from "../../libs/types/order";
 
 class TransactionServiceApi {
     private readonly path: string

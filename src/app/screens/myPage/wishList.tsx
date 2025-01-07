@@ -5,16 +5,16 @@ import { createSelector } from "reselect"
 import { useSelector } from "react-redux";
 import { useEffect, useRef} from "react";
 import { MemberServiceApi } from "../../apiServices/memberServiceApi";
-import { serverApi } from "../../../lib/config";
+import { serverApi } from "../../../libs/config";
 import { stringSplitterHandler } from "../../components/features/stringSplitter";
 import { AddCircle, RemoveCircle } from "@mui/icons-material";
-import { WishListItem } from "../../types/others";
-import { sweetErrorHandling, sweetTopSmallSuccessAlert, sweetTopSuccessAlert } from "../../../lib/sweetAlert";
+import { WishListItem } from "../../../libs/types/others";
+import { sweetErrorHandling, sweetTopSmallSuccessAlert, sweetTopSuccessAlert } from "../../../libs/sweetAlert";
 import { wishListItemsRetrieve } from "./selector";
 import { useHistory } from "react-router-dom";
 import { handleBuyProduct } from "../../components/features/handleBuySingleItem";
 import OrderServiceApi from "../../apiServices/orderServiceApi";
-import { OrderItem } from "../../types/order";
+import { OrderItem } from "../../../libs/types/order";
 
 //SELECTOR
 const retrieveWishListItems = createSelector(

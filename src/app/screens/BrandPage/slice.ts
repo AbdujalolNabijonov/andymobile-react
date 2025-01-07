@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { BrandPageState } from "../../types/screen";
+import { BrandPageState } from "../../../libs/types/screen";
 
 const initialState: BrandPageState = {
     targetBrands: []

@@ -1,11 +1,9 @@
 import assert from "assert";
-import { Product } from "../../types/product";
 import { verifiedMemberData } from "../../apiServices/verified";
-import Definer from "../../../lib/Definer";
+import Definer from "../../../libs/Definer";
 import OrderServiceApi from "../../apiServices/orderServiceApi";
-import { OrderItem } from "../../types/order";
-import { useHistory } from "react-router-dom";
-import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import { OrderItem } from "../../../libs/types/order";
+import { sweetErrorHandling } from "../../../libs/sweetAlert";
 
 export async function handleBuyProduct(product: any, obj: any, address?:string) {
     try {

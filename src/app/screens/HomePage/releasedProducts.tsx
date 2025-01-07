@@ -7,12 +7,12 @@ import ProductServiceApi from "../../apiServices/productServiceApi"
 
 //redux
 import { Dispatch } from "@reduxjs/toolkit";
-import { Product } from "../../types/product";
+import { Product } from "../../../libs/types/product";
 import { setRandomNewProducts } from "./slice";
 import { createSelector } from "reselect";
 import { retrieveRandomProducts } from "./selector"
 import { useDispatch, useSelector } from "react-redux"
-import { serverApi } from "../../../lib/config"
+import { serverApi } from "../../../libs/config"
 import { stringSplitterHandler } from "../../components/features/stringSplitter"
 import { useHistory, useLocation } from "react-router-dom"
 import { handleLikeItem } from "../../components/features/likeItem"

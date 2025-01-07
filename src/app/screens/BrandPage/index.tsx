@@ -6,12 +6,12 @@ import "../../css/brandsPage.css";
 //REDUX
 import { createSelector } from "reselect"
 import { Dispatch } from "@reduxjs/toolkit";
-import { Brand } from "../../types/member";
+import { Brand } from "../../../libs/types/member";
 import { setTargetBrands } from "./slice";
 import { retrieveTargetBrands } from "./selector";
 import { useDispatch, useSelector } from "react-redux";
 import BrandsServiceApi from "../../apiServices/brandsServiceApi";
-import { serverApi } from "../../../lib/config";
+import { serverApi } from "../../../libs/config";
 import { useHistory } from "react-router-dom";
 import { handleLikeItem } from "../../components/features/likeItem";
 import { DownToUpBtn } from "../../components/features/downToUpBtn";

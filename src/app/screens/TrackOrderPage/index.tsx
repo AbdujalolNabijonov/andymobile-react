@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Container, Stack, Tab, Tabs } from "@mui/material";
 import OrderServiceApi from "../../apiServices/orderServiceApi";
-import { Order} from "../../types/order";
+import { Order} from "../../../libs/types/order";
 import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@mui/material"
 import "../../css/trackOrderPage.css"
@@ -14,10 +14,10 @@ import { chosenOrderRetrieve, targetOrdersRetrieve } from "./selector";
 import { useDispatch, useSelector } from "react-redux";
 import { stringSplitterHandler } from "../../components/features/stringSplitter";
 import Moment from "react-moment";
-import { sweetFailureProvider, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
+import { sweetFailureProvider, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert";
 import { verifiedMemberData } from "../../apiServices/verified";
-import Definer from "../../../lib/Definer";
-import { Transaction } from "../../types/bank";
+import Definer from "../../../libs/Definer";
+import { Transaction } from "../../../libs/types/bank";
 import OrderPaused from "./orderPaused";
 import OrderProcess from "./orderProcess";
 import OrderFinished from "./orderFinished";
