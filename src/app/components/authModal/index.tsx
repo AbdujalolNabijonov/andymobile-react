@@ -24,7 +24,7 @@ export const AuthenticationModal = (props: any) => {
     //Handlers
     const handleSignUpRequest = async () => {
         try {
-            const isFullFilled = (mb_nick != "" && email != "") && (password != "" && checkPassword != "")
+            const isFullFilled = (mb_nick !== "" && email !== "") && (password !== "" && checkPassword !== "")
             const signUpData: SignUpMember = {
                 mb_nick: mb_nick,
                 mb_password: password,
@@ -38,7 +38,7 @@ export const AuthenticationModal = (props: any) => {
                 props.handleSignUpClose()
                 return false
             }
-            const doubleCheckPassword = password == checkPassword
+            const doubleCheckPassword = password === checkPassword
             assert.ok(doubleCheckPassword, Definer.input_err2)
             const memberServiceApi = new MemberServiceApi()
             await memberServiceApi.memberRequestSignUp(signUpData)
@@ -52,7 +52,7 @@ export const AuthenticationModal = (props: any) => {
     async function handleLogInRequest() {
         try {
             const memberServiceApi = new MemberServiceApi();
-            const isFullFilled = (login_mb_email != "" || login_mb_nick != "") && login_mb_password != ""
+            const isFullFilled = (login_mb_email !== "" || login_mb_nick !== "") && login_mb_password !== ""
             assert.ok(isFullFilled, Definer.input_err1)
             let loginData;
             if (login_mb_email.includes("@")) {
@@ -86,12 +86,12 @@ export const AuthenticationModal = (props: any) => {
         return validate_emails.some((ele) => text.includes(ele))
     }
     const handleKeyDownSignUp = (e: any) => {
-        if (e.key == "Enter") {
+        if (e.key === "Enter") {
             handleSignUpRequest()
         }
     }
     const handleKeyDownLogIn = (e: any) => {
-        if (e.key == "Enter") {
+        if (e.key === "Enter") {
             handleLogInRequest()
         }
     }
@@ -152,7 +152,7 @@ export const AuthenticationModal = (props: any) => {
                                         <input type="password" className="form-control" id="floatingpassord" placeholder="Password" onKeyDown={handleKeyDownLogIn} onChange={(e) => set_login_mb_password(e.target.value)} />
                                         <label htmlFor="floatingpassword">Password</label>
                                     </div>
-                                    <a className={"auth_anchor text-danger"} href="#">If you forget your password, you can log in with your signed up email address </a>
+                                    <a className={"auth_anchor text-danger"}>If you forget your password, you can log in with your signed up email address </a>
                                     <button className="btn btn-dark" onClick={handleLogInRequest}>Sign In</button>
                                     {resizeWidth < 450 ? (
                                         <div className="text-danger mt-2" onClick={() => toggle(false)}>Sign Up</div>

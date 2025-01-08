@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 
 const Inquiry = (props: any) => {
   //Initializations
-  const questions = Array.from({ length: 4 })
   const [loaded, setLoaded] = useState<boolean>(false)
 
   //React Hook

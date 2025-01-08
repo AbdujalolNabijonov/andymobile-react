@@ -87,8 +87,7 @@ export const TargetPosts = (props: any) => {
                                     <div
                                         className="post_img d-flex main_img justify-content-center align-items-center ps-2"
                                     >
-
-                                        <img src={blog_image} alt="image" className="rounded" />
+                                        <img src={blog_image} alt="image" className="rounded" aria-label="Blog  Image" aria-hidden="true" />
                                     </div>
                                     <Stack>
                                         <Stack
@@ -117,14 +116,13 @@ export const TargetPosts = (props: any) => {
                                             <div
                                                 className="post_by text-light fw-bold"
                                             >
-                                                <a href="">{blog.mb_data.mb_nick}</a>
+                                                {blog.mb_data.mb_nick}
                                             </div>
                                         </Stack>
                                         <div className="post_titile fs-5 mt-3 fw-bold">
                                             {blog.blog_title}
                                         </div>
                                     </Stack>
-
                                     <Stack
                                         flexDirection={"row"}
                                         justifyContent={"space-between"}

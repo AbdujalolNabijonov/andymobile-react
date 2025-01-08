@@ -3,8 +3,6 @@ import { NavLink, useHistory } from "react-router-dom"
 import { verifiedMemberData } from "../../apiServices/verified"
 
 export const MobileNavTop = (props: any) => {
-    //Initializations
-    const history = useHistory();
 
     return (
         <Stack

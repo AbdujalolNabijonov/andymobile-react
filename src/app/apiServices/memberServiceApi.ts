@@ -18,7 +18,7 @@ export class MemberServiceApi {
             const result = await axios.post(url, data, { withCredentials: true });
             console.log("signUpRequest state::", result.data.state);
             const costumize_error = result.data.message ? new Error(result.data.message.includes("duplicate") ? Definer.user_err1 : result.data.message) : ""
-            assert.ok(result?.data?.state != "fail", costumize_error);
+            assert.ok(result?.data?.state !== "fail", costumize_error);
             const member: Member = result.data.value;
             localStorage.setItem("member_data", JSON.stringify(member));
             return member;
@@ -45,7 +45,7 @@ export class MemberServiceApi {
             const url = `${this.path}/login`
             const result = await axios.post(url, loginData, { withCredentials: true });
             console.log("signUpRequest state::", result.data.state);
-            if (result.data.state == "fail") {
+            if (result.data.state === "fail") {
                 throw new Error(result.data.message)
             }
             const member: Member = result.data.value;

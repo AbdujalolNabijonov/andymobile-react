@@ -9,16 +9,16 @@ import { useEffect, useState } from "react"
 import { verifiedMemberData } from "../../apiServices/verified"
 import { sweetErrorHandling, sweetFailureProvider } from "../../../libs/sweetAlert"
 import Definer from "../../../libs/Definer"
-import {Followers} from "./followers"
+import { Followers } from "./followers"
 import Followings from "./followings"
 
 //Redux
 import { createSelector } from "reselect";
 import { MemberServiceApi } from "../../apiServices/memberServiceApi"
-import { Dispatch} from "@reduxjs/toolkit"
+import { Dispatch } from "@reduxjs/toolkit"
 import { Member } from "../../../libs/types/member"
 import { setChosenBlog, setChosenMember, setTargetReviews } from "./slice"
-import { chosenMemberRetrieve} from "./selector"
+import { chosenMemberRetrieve } from "./selector"
 import { useDispatch, useSelector } from "react-redux"
 import { ViewerPage } from "../../components/tuiEditor/tuiViewer"
 import { Blog } from "../../../libs/types/blog"
@@ -40,7 +40,7 @@ const retrieveChosenMember = createSelector(
 )
 
 
-export  const MyPage = (props: any) => {
+export const MyPage = (props: any) => {
     //Initilizations
     const [value, setValue] = useState<string>("1");
     const { setChosenMember, setChosenBlog, setTargetReviews } = actionDispatch(useDispatch());
@@ -141,9 +141,9 @@ export  const MyPage = (props: any) => {
                                 className="settings_items"
                             >
                                 <Stack
-                                    className={value == "1" ? "chosenSet controller_tab" : "controller_tab"}
+                                    className={value === "1" ? "chosenSet controller_tab" : "controller_tab"}
                                     flexDirection={"row"}
-                                    style={value == "1" ? { borderLeft: "4px solid black", backgroundColor: "white" } : {}}
+                                    style={value === "1" ? { borderLeft: "4px solid black", backgroundColor: "white" } : {}}
                                     onClick={() => handleValue("1")} alignItems={"center"}
                                     sx={{ padding: "0 0 0 10px" }}
                                 >
@@ -151,9 +151,9 @@ export  const MyPage = (props: any) => {
                                     <Tab value="1" label="User Account" />
                                 </Stack>
                                 <Stack
-                                    className={value == "2" ? "chosenSet controller_tab" : "controller_tab"}
+                                    className={value === "2" ? "chosenSet controller_tab" : "controller_tab"}
                                     flexDirection={"row"}
-                                    style={value == "2" ? { borderLeft: "4px solid black", backgroundColor: "white" } : {}}
+                                    style={value === "2" ? { borderLeft: "4px solid black", backgroundColor: "white" } : {}}
                                     onClick={() => handleValue("2")}
                                     alignItems={"center"}
                                     sx={{ padding: "0 0 0 10px" }}
@@ -162,9 +162,9 @@ export  const MyPage = (props: any) => {
                                     <Tab value="2" label="Bank cards" />
                                 </Stack>
                                 <Stack
-                                    className={value == "3" ? "chosenSet controller_tab" : "controller_tab"}
+                                    className={value === "3" ? "chosenSet controller_tab" : "controller_tab"}
                                     flexDirection={"row"}
-                                    style={value == "3" ? { borderLeft: "4px solid black", backgroundColor: "white" } : {}}
+                                    style={value === "3" ? { borderLeft: "4px solid black", backgroundColor: "white" } : {}}
                                     onClick={() => handleValue("3")}
                                     alignItems={"center"}
                                     sx={{ padding: "0 0 0 10px" }}
@@ -173,9 +173,9 @@ export  const MyPage = (props: any) => {
                                     <Tab value="3" label="wish list" />
                                 </Stack>
                                 <Stack
-                                    className={value == "5" ? "chosenSet controller_tab" : "controller_tab"}
+                                    className={value === "5" ? "chosenSet controller_tab" : "controller_tab"}
                                     flexDirection={"row"}
-                                    style={value == "5" ? { borderLeft: "4px solid black", backgroundColor: "white" } : {}}
+                                    style={value === "5" ? { borderLeft: "4px solid black", backgroundColor: "white" } : {}}
                                     onClick={() => handleValue("5")}
                                     alignItems={"center"}
                                     sx={{ padding: "0 0 0 10px" }}
@@ -184,9 +184,9 @@ export  const MyPage = (props: any) => {
                                     <Tab value="5" label="followers" />
                                 </Stack>
                                 <Stack
-                                    className={value == "6" ? "chosenSet controller_tab" : "controller_tab"}
+                                    className={value === "6" ? "chosenSet controller_tab" : "controller_tab"}
                                     flexDirection={"row"}
-                                    style={value == "6" ? { borderLeft: "4px solid black", backgroundColor: "white" } : {}}
+                                    style={value === "6" ? { borderLeft: "4px solid black", backgroundColor: "white" } : {}}
                                     onClick={() => handleValue("6")}
                                     alignItems={"center"}
                                     sx={{ padding: "0 0 0 10px" }}
@@ -195,9 +195,9 @@ export  const MyPage = (props: any) => {
                                     <Tab value="6" label="followings" />
                                 </Stack>
                                 <Stack
-                                    className={value == "7" ? "chosenSet controller_tab" : "controller_tab"}
+                                    className={value === "7" ? "chosenSet controller_tab" : "controller_tab"}
                                     flexDirection={"row"}
-                                    style={value == "7" ? { borderLeft: "4px solid black", backgroundColor: "white" } : {}}
+                                    style={value === "7" ? { borderLeft: "4px solid black", backgroundColor: "white" } : {}}
                                     onClick={() => handleValue("7")}
                                     alignItems={"center"}
                                     sx={{ padding: "0 0 0 10px" }}
@@ -206,9 +206,9 @@ export  const MyPage = (props: any) => {
                                     <Tab value="7" label="posts" />
                                 </Stack>
                                 <Stack
-                                    className={value == "8" ? "chosenSet controller_tab" : "controller_tab"}
+                                    className={value === "8" ? "chosenSet controller_tab" : "controller_tab"}
                                     flexDirection={"row"}
-                                    style={value == "8" ? { borderLeft: "4px solid black", backgroundColor: "white" } : {}}
+                                    style={value === "8" ? { borderLeft: "4px solid black", backgroundColor: "white" } : {}}
                                     onClick={() => handleValue("8")}
                                     alignItems={"center"}
                                     sx={{ padding: "0 0 0 10px" }}

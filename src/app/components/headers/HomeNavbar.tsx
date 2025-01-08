@@ -1,17 +1,16 @@
 
 import React, { useEffect, useRef, useState } from "react"
-import { Box, Stack, Container, Menu, MenuItem } from "@mui/material"
+import { Box, Stack, Container } from "@mui/material"
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, EffectFade } from "swiper/modules"
 import { NavLink, useHistory } from "react-router-dom";
 import { verifiedMemberData } from "../../apiServices/verified";
+import DeviceDetect from "../features/deviceDetector";
+import { MobileNav } from "./mobileNav";
+import { MobileNavTop } from "./mobileNavTop";
 import "swiper/css"
 import "../../css/general.css"
 import "../../css/navbar.css"
-import DeviceDetect from "../features/deviceDetector";
-import { MenuOutlined } from "@mui/icons-material";
-import { MobileNav } from "./mobileNav";
-import { MobileNavTop } from "./mobileNavTop";
 
 export const HomeNavbar = (props: any) => {
     //Initilizations
@@ -20,7 +19,6 @@ export const HomeNavbar = (props: any) => {
     const progressContent = useRef(null);
     const [scrolled, setScrolled] = useState<Number>(0);
     const history = useHistory();
-    const [openMenu, setOpenMenu] = useState<boolean>(false)
     //
     useEffect(() => {
 
@@ -34,19 +32,13 @@ export const HomeNavbar = (props: any) => {
 
     }, [])
     //Handlers
-    const { isMobile } = DeviceDetect()
     const onAutoplayTimeLeft = (s: any, time: any, progress: any) => {
         //@ts-ignore
         progressCircle.current.style.setProperty('--progress', 1 - progress);
         //@ts-ignore
         progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     };;
-    const handleOpenMenu = () => {
-        setOpenMenu(true)
-    }
-    const handleCloseMenu = () => {
-        setOpenMenu(false)
-    }
+    
     return (
         <Box className="HomePage">
             <Stack
@@ -133,7 +125,7 @@ export const HomeNavbar = (props: any) => {
                                     The all-new Sony's LYT-900 sensor features a 1-inch sensor size and 3.2µm 4-in-1 Super Pixel
                                 </div>
                                 <div className="d-flex align-items-center gap-5 justify-content-center">
-                                    <a href="" className="nav-link pt-4"> <span>LEARN MORE</span><i className="fa-solid ms-1 fa-arrow-up-right-from-square"></i></a>
+                                    <a className="nav-link pt-4"> <span>LEARN MORE</span><i className="fa-solid ms-1 fa-arrow-up-right-from-square"></i></a>
                                     <button className="mt-4 btn btn-secondary"
                                         onClick={() => {
                                             history.push("/products/product/66311b1d628274d1bb9806e5")

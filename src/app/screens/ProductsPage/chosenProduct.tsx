@@ -66,7 +66,7 @@ export const ChosenProduct = (props: any) => {
         { setChosenProduct, setProductReview } = actionDispatch(useDispatch()),
         [magnifyImg, setMagnifyImg] = useState<string>(""),
         [chosenProductImgIndex, setChosenProductImgIndex] = useState<number>(0),
-        [reBuild, setRebuild] = useState<Date>(new Date),
+        [reBuild, setRebuild] = useState<Date>(new Date()),
         [disabledBtn, setDisabledBtn] = useState<boolean>(false),
         main_img = magnifyImg ? magnifyImg : `${serverApi}/${chosenProduct?.product_images[0]}`,
         [coords, setCoords] = useState<{ lat: any, lng: any }>({ lat: 3123, lng: 122 }),
@@ -222,9 +222,9 @@ export const ChosenProduct = (props: any) => {
                                     onClick={(e) => handleSelectImage(e, image_url, index)}
                                 >
                                     <Box
-                                        className={chosenProductImgIndex == index ? "product_swiper_item chosen_product_img" : "product_swiper_item"}
+                                        className={chosenProductImgIndex === index ? "product_swiper_item chosen_product_img" : "product_swiper_item"}
                                     >
-                                        <img src={image_url} key={index} />
+                                        <img src={image_url} key={index} aria-label="Product Image" />
                                     </Box>
                                 </SwiperSlide>
                             )
@@ -446,8 +446,7 @@ export const ChosenProduct = (props: any) => {
                         }}>
                             <option>Not Monthly contract</option>
                             {
-                                //@ts-ignore
-                                Array.from({ length: chosenProduct?.product_contract + 1 }).map((ele, index: number) => {
+                                Array.from({ length: chosenProduct ? chosenProduct?.product_contract : 0 + 1 }).map((ele, index: number) => {
                                     if (index % 3 === 0 && index !== 0) {
                                         return (<option value={index}>{index} months contract</option>)
                                     }

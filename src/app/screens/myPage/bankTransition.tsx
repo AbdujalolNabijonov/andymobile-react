@@ -100,7 +100,7 @@ const BankTransition = () => {
             refs.current["expiry"].value = ""
             refs.current["cvc"].value = ""
             refs.current["pin"].value = ""
-            setRebuild(new Date)
+            setRebuild(new Date())
         } catch (err: any) {
             await sweetErrorHandling(err)
         }

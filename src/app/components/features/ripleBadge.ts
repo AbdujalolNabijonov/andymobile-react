@@ -1,4 +1,4 @@
-import {styled, alpha} from "@mui/material/styles";
+import {styled} from "@mui/material/styles";
 import { Badge } from "@mui/material";
 
 export const RippleBadge = styled(Badge)(({theme}) => ({

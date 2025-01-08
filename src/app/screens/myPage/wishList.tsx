@@ -1,15 +1,15 @@
-import { Box, Button, Stack, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { Box, Stack, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 
 //REDUX 
 import { createSelector } from "reselect"
 import { useSelector } from "react-redux";
-import { useEffect, useRef} from "react";
+import { useEffect, useRef } from "react";
 import { MemberServiceApi } from "../../apiServices/memberServiceApi";
 import { serverApi } from "../../../libs/config";
 import { stringSplitterHandler } from "../../components/features/stringSplitter";
 import { AddCircle, RemoveCircle } from "@mui/icons-material";
 import { WishListItem } from "../../../libs/types/others";
-import { sweetErrorHandling, sweetTopSmallSuccessAlert, sweetTopSuccessAlert } from "../../../libs/sweetAlert";
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert";
 import { wishListItemsRetrieve } from "./selector";
 import { useHistory } from "react-router-dom";
 import { handleBuyProduct } from "../../components/features/handleBuySingleItem";
@@ -46,7 +46,7 @@ const WishList = (props: any) => {
             const memberServiceApi = new MemberServiceApi();
             await memberServiceApi.editWishListItem({ modifier: modifier, product_id: product.product_id })
 
-            if (modifier < 0 && refs.current[product.product_id].innerHTML == 1) {
+            if (modifier < 0 && refs.current[product.product_id].innerHTML === 1) {
                 await memberServiceApi.removeWishListItem(product.product_id)
                 await memberServiceApi.likenItem(product.product_id, "PRODUCT")
                 refs[product.product_name].remove()
@@ -171,6 +171,8 @@ const WishList = (props: any) => {
                                                         src={image_url}
                                                         alt="image"
                                                         style={{ height: "100px", width: "50px" }}
+                                                        aria-label="Image product"
+                                                        aria-hidden="true"
                                                     />
                                                 </TableCell>
                                                 <TableCell align="center" className=" fs-6">

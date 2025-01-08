@@ -1,7 +1,7 @@
+import React, { useEffect, useState } from "react"
 import { Box, Stack } from "@mui/material"
 import { Viewer } from "@toast-ui/react-editor"
 import "@toast-ui/editor/dist/toastui-editor.css"
-import React, { useEffect, useRef, useState } from "react"
 import ReviewWriting from "../../screens/ProductsPage/reviewWriting"
 import ProductReview from "../../screens/ProductsPage/productReview"
 

@@ -50,15 +50,18 @@ const Footer = () => {
                                 <ul>
                                     <li><a href="/faq">FAQ</a></li>
                                     <li><a href="/user-page">MY SETTINGS</a></li>
-                                    <li><a
+                                    <li
                                         className="text-light"
                                         style={{ cursor: "pointer" }}
                                         onClick={() => {
                                             localStorage.setItem("value", JSON.stringify({ value: 3 }))
                                             history.push("/user-page")
                                             window.location.reload()
-                                        }}>WISHLIST</a></li>
-                                    <li><a
+                                        }}
+                                    >
+                                        WISHLIST
+                                    </li>
+                                    <li
                                         className="text-light"
                                         style={{ cursor: "pointer" }}
                                         onClick={() => {
@@ -66,14 +69,16 @@ const Footer = () => {
                                             history.push("/user-page")
                                             window.location.reload()
                                         }}
-                                    >MY POSTS</a></li>
+                                    >
+                                        MY POSTS
+                                    </li>
                                 </ul>
                             </Stack>
                             <Stack className="social-links mt-4" direction={"row"} gap={"30px"}>
-                                <a href="#"><i className="fab fa-facebook-f"></i></a>
-                                <a href="#"><i className="fab fa-twitter"></i></a>
-                                <a href="#"><i className="fab fa-instagram"></i></a>
-                                <a href="#"><i className="fab fa-linkedin-in"></i></a>
+                                <a href="https://facebook.com"><i className="fab fa-facebook-f"></i></a>
+                                <a href="https://twitter.com"><i className="fab fa-twitter"></i></a>
+                                <a href="https://instagram.com"><i className="fab fa-instagram"></i></a>
+                                <a href="https://linkedin.com"><i className="fab fa-linkedin-in"></i></a>
                             </Stack>
                         </Box>
                         <Box className="email-col">

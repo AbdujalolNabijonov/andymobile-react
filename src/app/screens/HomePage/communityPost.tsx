@@ -14,7 +14,7 @@ import CommunityServiceApi from '../../apiServices/communityServiceApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { serverApi } from '../../../libs/config';
 import { useHistory } from 'react-router-dom';
-import { Favorite, FavoriteBorderRounded, FavoriteBorderTwoTone } from '@mui/icons-material';
+import { Favorite } from '@mui/icons-material';
 import { handleLikeItem } from '../../components/features/likeItem';
 
 
@@ -29,7 +29,6 @@ const communityPostRetriever = createSelector(
 )
 function CommunityPosts(props: any) {
     //Initializations
-    const [scrolled, setScrolled] = useState<boolean>(false)
     const { setCommunityPost } = actionDispatch(useDispatch())
     const { communityPost } = useSelector(communityPostRetriever)
     const history = useHistory()
@@ -42,20 +41,6 @@ function CommunityPosts(props: any) {
             .then(data => setCommunityPost(data))
             .catch(err => console.log(err))
     }, [rebuild])
-
-    useEffect(() => {
-        function scrollHandle() {
-            if (window.scrollY > 2700) {
-                setScrolled(true)
-            } else {
-                setScrolled(false)
-            }
-        }
-        window.addEventListener("scroll", scrollHandle)
-        return () => {
-            window.removeEventListener("scroll", scrollHandle)
-        }
-    }, [])
 
     //handlers
     function handleOpenPost(post: Blog) {

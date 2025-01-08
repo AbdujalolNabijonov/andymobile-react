@@ -34,7 +34,7 @@ class BrandsServiceApi {
             const url = `${serverApi}/brands/getAllBrands`
             const result = await axios.get(url, { withCredentials: true })
             console.log(`getAllBrands state::: ${result.data.state}`)
-            if (result.data.state == "fail") {
+            if (result.data.state === "fail") {
                 throw new Error(Definer.general_err1)
             }
             const brands: Brand[] = result.data.value;

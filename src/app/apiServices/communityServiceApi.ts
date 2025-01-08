@@ -1,6 +1,6 @@
 import axios from "axios";
 import { serverApi } from "../../libs/config";
-import { Message, searchBlogs } from "../../libs/types/others";
+import { searchBlogs } from "../../libs/types/others";
 import { Blog, BlogCreate, SearchObjBlog } from "../../libs/types/blog";
 import { Review, reviewCreateData } from "../../libs/types/review";
 

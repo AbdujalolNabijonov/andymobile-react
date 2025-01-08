@@ -200,7 +200,7 @@ export const ProductFilter = (props: any) => {
                                         return (
                                             <Box
                                                 className="brand_box"
-                                                style={chosenBrand == index.toString() ? { border: "2px solid black" } : {}}
+                                                style={chosenBrand === index.toString() ? { border: "2px solid black" } : {}}
                                                 onClick={() => handleBrand((index.toString()), ele._id)}
                                             >
                                                 <div className="brand_img">
@@ -264,23 +264,23 @@ export const ProductFilter = (props: any) => {
                                 justifyContent={"start"}
                             >
                                 <div
-                                    style={chosenStorage == 128 ? { backgroundColor: 'pink' } : {}}
+                                    style={chosenStorage === 128 ? { backgroundColor: 'pink' } : {}}
                                     onClick={() => handleStorage(128)}
                                 >128Gb</div>
                                 <div
-                                    style={chosenStorage == 256 ? { backgroundColor: 'pink' } : {}}
+                                    style={chosenStorage === 256 ? { backgroundColor: 'pink' } : {}}
                                     onClick={() => handleStorage(256)}
                                 >256Gb</div>
                                 <div
-                                    style={chosenStorage == 512 ? { backgroundColor: 'pink' } : {}}
+                                    style={chosenStorage === 512 ? { backgroundColor: 'pink' } : {}}
                                     onClick={() => handleStorage(512)}
                                 >512Gb</div>
                                 <div
-                                    style={chosenStorage == 1 ? { backgroundColor: 'pink' } : {}}
+                                    style={chosenStorage === 1 ? { backgroundColor: 'pink' } : {}}
                                     onClick={() => handleStorage(1)}
                                 >1Tb</div>
                                 <div
-                                    style={chosenStorage == 2 ? { backgroundColor: 'pink' } : {}}
+                                    style={chosenStorage === 2 ? { backgroundColor: 'pink' } : {}}
                                     onClick={() => handleStorage(2)}
                                 >2Tb</div>
                             </Stack>

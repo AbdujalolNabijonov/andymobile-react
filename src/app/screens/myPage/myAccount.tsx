@@ -114,7 +114,7 @@ export const MyAccount = () => {
                     alignItems={"center"}
                 >
                     <div className="account_img">
-                        <img src={userImg} alt="acccount image" />
+                        <img src={userImg} alt="acccount image" aria-label="Account image" aria-hidden="true"/>
                     </div>
                     <div className="account_info ps-2">
                         <div className="account_name fs-3 fw-bold">{verifiedMemberData?.mb_nick}</div>
@@ -146,7 +146,7 @@ export const MyAccount = () => {
                 gap={"30px"}
             >
                 <Box
-                    style={movePosition == "left" ? { transform: "translateX(0%)" } : { transform: "translateX(-130%)" }}
+                    style={movePosition === "left" ? { transform: "translateX(0%)" } : { transform: "translateX(-130%)" }}
 
                 >
                     <Stack className="mb-4" flexDirection={"row"} gap={"70px"}>
@@ -218,7 +218,7 @@ export const MyAccount = () => {
                     </Stack>
                 </Box>
                 <Box
-                    style={movePosition == "right" ? { transform: "translateX(-105%)" } : { transform: "translateX(0%)" }}
+                    style={movePosition === "right" ? { transform: "translateX(-105%)" } : { transform: "translateX(0%)" }}
                 >
                     <Box className="update_email mb-3">
                         <label htmlFor="update_phone" className="fs-5 text-dark fw-bold">Old Password</label>

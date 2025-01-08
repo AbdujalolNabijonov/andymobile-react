@@ -62,7 +62,7 @@ export const HomeProducts = (props: HomePageProducts) => {
                                 <Stack direction={"row"} gap={"10px"} className="mb-2">
                                     <div><i className="fa-solid fa-database"></i></div>
                                     <div>Storage:</div>
-                                    <div className="text-dark">{ele.product_memory} {ele.product_memory == 1 ? "TB" : "GB"}</div>
+                                    <div className="text-dark">{ele.product_memory} {ele.product_memory === 1 ? "TB" : "GB"}</div>
                                 </Stack>
                                 <Stack direction={"row"} gap={"10px"} className="mb-2">
                                     <div><i className="fa-solid fa-sack-dollar"></i></div>

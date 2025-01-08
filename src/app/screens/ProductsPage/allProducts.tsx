@@ -55,7 +55,6 @@ const AllProducts = (props: any) => {
     const { targetReviews } = useSelector(retrieverTargetReviews)
     const { company_id } = useParams<{ company_id: string }>()
     const [rebuild, setRebuild] = useState<Date>(new Date())
-    const reviews: Review[] = []
     const [searchObj, setSearchObj] = useState({
         limit: 6,
         company_id: company_id,
@@ -72,7 +71,7 @@ const AllProducts = (props: any) => {
     useEffect(() => {
         window.scrollTo(0, 0)
         //Target Products
-        const productServiceApi = new ProductServiceApi;
+        const productServiceApi = new ProductServiceApi();
         productServiceApi.getTargetProducts(searchObj).then(data => setTargetProducts(data)).catch(err => console.log(err))
         if (searchObj.company_id) {
             handleViewItem(searchObj.company_id, "MEMBER")

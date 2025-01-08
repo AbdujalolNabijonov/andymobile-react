@@ -53,7 +53,7 @@ const App: React.FC = () => {
       setLikedItemAmount(data?.length ?? 0)
     }
     ).then(err => console.log(err))
-  }, [reBuild])
+  }, [reBuild, setWishListItems])
 
   //Handlers
   function handleSignUpClose() { setOpenAuth(false) }
@@ -101,7 +101,7 @@ const App: React.FC = () => {
   }
   return (
     <div>
-      {pathname == "/" ? <HomeNavbar
+      {pathname === "/" ? <HomeNavbar
         handleSignUpOpen={handleSignUpOpen}
         handleBasketOpen={handleBasketOpen}
         handleLogOut={handleLogOut}

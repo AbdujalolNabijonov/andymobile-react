@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { Box, Stack } from "@mui/material"
+import { Box } from "@mui/material"
 import "../../css/features.css"
 
 
-export const DownToUpBtn = (props:any) => {
+export const DownToUpBtn = (props: any) => {
     //Initilzaations
     const [scrolled, setScrolled] = useState<boolean>(false)
 

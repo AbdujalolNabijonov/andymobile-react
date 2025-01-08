@@ -1,8 +1,7 @@
 import axios from "axios"
 import { Product, ProductSearchObject } from "../../libs/types/product"
-import assert from "assert";
-import Definer from "../../libs/Definer";
 import { serverApi } from "../../libs/config";
+
 class ProductServiceApi {
     private readonly path: string
     constructor() {
@@ -13,7 +12,7 @@ class ProductServiceApi {
             const url = `${this.path}/products/getTargetProducts`
             const result = await axios.post(url, data, { withCredentials: true })
             console.log(`getTargetProducts state::: ${result.data.state}`)
-            if (result?.data?.state == "fail") {
+            if (result?.data?.state === "fail") {
                 throw new Error(result.data.message)
             }
             const products: Product[] = result.data.value;

@@ -10,7 +10,7 @@ import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 import Definer from "../../../libs/Definer";
-import { sweetErrorHandling, sweetTopSmallSuccessAlert, sweetTopSuccessAlert } from "../../../libs/sweetAlert";
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert";
 import CommunityServiceApi from "../../apiServices/communityServiceApi";
 import { verifiedMemberData } from "../../apiServices/verified";
 import assert from "assert";
@@ -61,7 +61,7 @@ const ReviewWriting = (props: any) => {
     async function handleSubmitReview() {
         try {
             if (!context) {
-                throw { message: Definer.input_err1 }
+                throw new Error(Definer.input_err1);
             }
             assert.ok(verifiedMemberData, Definer.auth_err1)
             const communityServiceApi = new CommunityServiceApi()

@@ -39,7 +39,7 @@ const BrandPage = () => {
     const refs: any = useRef([])
     //Three circle Hook
     useEffect(() => {
-        const brandsServiceApi = new BrandsServiceApi
+        const brandsServiceApi = new BrandsServiceApi()
         brandsServiceApi.getTargetBrands(searchObj).then(data => setTargetBrands(data)).catch(err => console.log(err))
         window.scrollTo(0, 0)
         setLoad(true)
@@ -108,7 +108,7 @@ const BrandPage = () => {
                                 className={load ? "card aos-animate" : "card"}
                                 data-aos="fade-right"
                                 data-aos-delay={150 * index}
-                                style={boxSize == "32%" ? { fontSize: "19px", width: boxSize } : boxSize == "49%" ? { fontSize: "24px", width: boxSize } : { width: boxSize }}
+                                style={boxSize === "32%" ? { fontSize: "19px", width: boxSize } : boxSize === "49%" ? { fontSize: "24px", width: boxSize } : { width: boxSize }}
                             >
                                 <button
                                     className="btn btn-outline-secondary rounded-circle"

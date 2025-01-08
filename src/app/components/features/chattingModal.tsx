@@ -1,13 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Avatar, Badge, Box, Button, Menu, Stack } from "@mui/material";
-import data from '@emoji-mart/data'
-import Picker from '@emoji-mart/react'
+import { Avatar, Box, Button, Stack } from "@mui/material";
 import { socketContext } from "../Context/socketIo";
 import { verifiedMemberData } from "../../apiServices/verified";
 import assert from "assert";
 import Definer from "../../../libs/Definer";
 import { sweetErrorHandling } from "../../../libs/sweetAlert";
-import CommunityServiceApi from "../../apiServices/communityServiceApi";
 import { Message } from "../../../libs/types/others";
 import "../../css/chattingBadge.css";
 import { RippleBadge } from "./ripleBadge";
