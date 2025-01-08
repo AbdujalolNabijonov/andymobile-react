@@ -75,13 +75,14 @@ export const NewProducts = (props: any) => {
                 className="product-swiper cards"
                 style={{ cursor: "pointer" }}
             >
-                {randomNewProducts.map((ele: Product, index) => {
+                {randomNewProducts.map((ele: Product, index: number) => {
                     let image_url_1 = `${serverApi}/${ele.product_images[0]}`,
                         image_url_2 = ele.product_images[1] ? `${serverApi}/${ele.product_images[1]}` : `/pictures/products/${ele.product_color}_phone.webp`,
                         discount_price = ele.product_price - (ele.product_price * (ele.product_discount / 100))
                     return (
                         <SwiperSlide
                             className="swiper-card"
+                            key={index}
                         >
                             <Box className={"slider-card border-0"} id="card">
                                 <div className="card-img product_fade">
@@ -125,7 +126,10 @@ export const NewProducts = (props: any) => {
                                                 let product_color = product.product_color.toLowerCase()
                                                 let image_color = product_color === "silver" ? "white" : product_color
                                                 return (
-                                                    <div className="color-select">
+                                                    <div
+                                                        className="color-select"
+                                                        key={index}
+                                                    >
                                                         <button
                                                             type="button"
                                                             onClick={(e) => handleOpenChosenOne(e, product._id)}

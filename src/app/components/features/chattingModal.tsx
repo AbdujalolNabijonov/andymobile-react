@@ -27,7 +27,6 @@ const Chatting = () => {
         socket?.on("connnect", () => {
         })
         socket?.on("totalUser", (data: any) => {
-            console.log(data)
             setOnlineUsers(data.totalUser)
         })
         socket?.on("newMsgApp", (msg: Message) => {

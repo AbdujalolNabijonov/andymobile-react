@@ -32,7 +32,6 @@ const actionDispatch = (dispatch: Dispatch) => ({
 })
 
 const App: React.FC = () => {
-
   //Initilizations
   const { pathname } = useLocation();
   const [openAuth, setOpenAuth] = useState(false);

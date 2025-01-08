@@ -1,7 +1,5 @@
-import { useRef, useState} from "react";
+import { useRef, useState } from "react";
 import { Editor } from "@toast-ui/react-editor";
-import "@toast-ui/editor/dist/toastui-editor.css";
-
 import {
     Box,
     Button,
@@ -16,10 +14,11 @@ import { BlogCreate } from "../../../libs/types/blog";
 import { serverApi } from "../../../libs/config";
 import assert from "assert";
 import Definer from "../../../libs/Definer";
+import "@toast-ui/editor/dist/toastui-editor.css";
 
 export const TuiEditor = (props: any) => {
     /** INITIALIZATIONS */
-    const editorRef:any = useRef([]);
+    const editorRef: any = useRef([]);
     const [blogData, setBlogData] = useState<BlogCreate>({
         blog_category: '',
         blog_context: "",
@@ -95,24 +94,20 @@ export const TuiEditor = (props: any) => {
                 <div className="form_row" style={{ width: "300px" }}>
                     <div className="fs-4">Write a Title</div>
                     <input
-                        ref={(ele)=>editorRef.current["title"]=ele}
+                        ref={(ele) => editorRef.current["title"] = ele}
                         type="text"
                         style={{ width: "300px", border: "1px solid gray", padding: "3px 10px" }}
                         placeholder="Enter a title"
                     />
                 </div>
-
             </Stack>
-
             {/*@ts-ignore*/}
             <Editor
-                /* @ts-ignore */
-                ref={(ele)=>editorRef.current["context"]=ele}
+                ref={editorRef}
                 initialValue="Type here"
                 previewStyle="vertical"
                 height="640px"
-                 /* @ts-ignore */
-                initialEditType="WYSIWYG"
+                initialEditType={"wysiwyg"}
                 toolbarItems={[
                     ["heading", "bold", "italic", "strike"],
                     ["image", "table", "link"],
@@ -121,12 +116,9 @@ export const TuiEditor = (props: any) => {
                 hooks={{
                     addImageBlobHook: async (image: any, callBack: any) => {
                         const imageUploader = await uploadImage(image)
-                        callBack(imageUploader)
+                        callBack(null, imageUploader)
                         return false
                     },
-                }}
-                events={{
-                    load: function (param: any) { },
                 }}
             />
             <Stack direction="row" justifyContent="center">

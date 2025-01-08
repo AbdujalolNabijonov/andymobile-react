@@ -5,7 +5,6 @@ import { serverApi } from "../../../libs/config";
 import { ArrowBack, ArrowForward, Favorite, RemoveRedEye } from "@mui/icons-material";
 import { stringSplitterHandler } from "../../components/features/stringSplitter";
 import { handleLikeItem } from "../../components/features/likeItem";
-import { sweetErrorHandling } from "../../../libs/sweetAlert";
 import { useHistory } from "react-router-dom";
 
 
@@ -16,7 +15,8 @@ export const Products = (props: any) => {
     const [productKey, setPoductKey] = useState<string>("");
     const history = useHistory()
     const refs: any = useRef([])
-    //three circle Hook
+
+    //Life circle
     useEffect(() => {
         setLoaded(true)
         return () => {
@@ -47,7 +47,7 @@ export const Products = (props: any) => {
                 {props.targetProducts.map((ele: Product, index: number) => {
                     let image_urls = [ele.product_images[0], ele.product_images[1]]
                     let pictures;
-                    if (ele._id == productKey) {
+                    if (ele._id === productKey) {
                         for (let product of ele?.product_related_colors) {
                             if (product.product_color === chosenColor) {
                                 pictures = product.product_images
@@ -67,7 +67,7 @@ export const Products = (props: any) => {
                         >
                             <Box
                                 className="product_img position-relative product_fade d-flex justify-content-center"
-                                style={props.boxSize == "45%" ? { width: "190px" } : { width: '340px' }}
+                                style={props.boxSize === "45%" ? { width: "190px" } : { width: '340px' }}
                                 onClick={() => { return false }}
                             >
                                 <button className="position-absolute" onClick={(e) => {
@@ -83,7 +83,7 @@ export const Products = (props: any) => {
                                 className="product_item-info p-2"
                                 style={{ width: "50%" }}
                             >
-                                <div className="product_name pb-2  fs-5 text-center fw-bold">{ele.product_name} {ele.product_memory == 1 ? `${ele.product_memory}TB` : `${ele.product_memory}GB`}</div>
+                                <div className="product_name pb-2  fs-5 text-center fw-bold">{ele.product_name} {ele.product_memory === 1 ? `${ele.product_memory}TB` : `${ele.product_memory}GB`}</div>
                                 <div className="select_color" onClick={(e) => e.stopPropagation()}>
                                     <select
                                         className="product_colors form-select"
@@ -109,7 +109,7 @@ export const Products = (props: any) => {
                                                     height: "15px",
                                                     borderRadius: '50%',
                                                     boxShadow: "0 0 3px black",
-                                                    border: chosenColor == `${product.product_color}` && productKey == ele._id ? "2px solid #D17237" : "",
+                                                    border: chosenColor === `${product.product_color}` && productKey === ele._id ? "2px solid #D17237" : "",
                                                     backgroundColor: `${product.product_color}`
                                                 }}></div>
                                             )) : (

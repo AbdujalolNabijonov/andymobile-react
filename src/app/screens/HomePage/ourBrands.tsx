@@ -74,7 +74,7 @@ export const OurBrands = () => {
                         {targetTopBrands.map((brand: Brand, index: number) => {
                             const image_url = `${serverApi}/${brand.mb_image}`
                             return (
-                                <SwiperSlide>
+                                <SwiperSlide key={index}>
                                     <Stack
                                         className="brand_card"
                                         style={{ backgroundColor: logo_Colors[index] }}

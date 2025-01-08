@@ -47,7 +47,6 @@ class TransactionServiceApi {
     async getChosenTransaction(id: any): Promise<Transaction> {
         try {
             const url = `${serverApi}/bankCard/transaction/${id}`;
-            console.log("salom",url)
             const result = await axios.get(url, { withCredentials: true });
             console.log(`GET getChosenTransaction State, ${result.data.state}`);
             const transactionData: Transaction = result.data.value[0];

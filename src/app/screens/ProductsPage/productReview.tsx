@@ -2,9 +2,8 @@ import { Box, Rating, Stack } from "@mui/material";
 import { Review } from "../../../libs/types/review";
 import { serverApi } from "../../../libs/config";
 import Moment from "react-moment"
-import { useEffect, useRef, useState } from "react";
+import { useRef} from "react";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
-import MoodBadIcon from "@mui/icons-material/MoodBad";
 import { handleLikeItem } from "../../components/features/likeItem";
 
 const ProductReview = (props: any) => {

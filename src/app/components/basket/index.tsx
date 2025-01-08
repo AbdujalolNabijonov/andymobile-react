@@ -27,9 +27,7 @@ export const Basket = (props: any) => {
         localStorage.setItem("basket_items", JSON.stringify(fixedItems))
     }
     function handleRemoveOrder(item: OrderItem) {
-        console.log(props.addItems)
         const updatedList = props.addItems.filter((ele: OrderItem) => ele.order_id !== item.order_id);
-        console.log(updatedList)
         props.setAddItem([...updatedList])
         props.setOrdersAmount(updatedList.length)
         localStorage.setItem("basket_items", JSON.stringify(updatedList))

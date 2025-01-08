@@ -33,22 +33,26 @@ export const HomeProducts = (props: HomePageProducts) => {
             flexWrap={"wrap"}
             justifyContent={"start"}
         >
-            {props.products.map((ele: Product, index) => {
+            {props.products.map((ele: Product, index: any) => {
                 const image_url_1 = `${serverApi}/${ele.product_images[0]}`
                 const image_url_2 = `${serverApi}/${ele.product_images[1]}`
                 const brand_pic = `${serverApi}/${ele.owner_data.mb_image}`
                 const discount_price = ele.product_price - (ele.product_price * (ele.product_discount / 100))
                 return (
-                    <Box data-aos="fade-up" data-aos-delay={`${100 * index}`} className={props.scrolled && loaded ? "product_card opacity-1 aos-animate product_fade" : "product_card product_fade"}>
+                    <Box
+                        data-aos="fade-up"
+                        data-aos-delay={`${100 * index}`} className={props.scrolled && loaded ? "product_card opacity-1 aos-animate product_fade" : "product_card product_fade"}
+                        key={index}
+                    >
                         <Stack className="card_img" alignItems={"center"}>
                             <img src={image_url_1} alt="" className="product_img_1 w-100" />
-                            <img src={image_url_2} alt=""  className="product_img_2 w-100" />
+                            <img src={image_url_2} alt="" className="product_img_2 w-100" />
                             <div className="product_badge">{props.searchObjHome.order.toUpperCase()}</div>
                         </Stack>
                         <Box className="card__overlay">
                             <Box className="card__header">
                                 <svg className="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
-                                <img className="card__thumb" src={brand_pic} alt=""/>
+                                <img className="card__thumb" src={brand_pic} alt="" />
                                 <div className="card__header-text">
                                     <h3 className="card__title">{ele.owner_data.mb_nick} Company</h3>
                                     <span className="card__status">{ele.product_name}</span>

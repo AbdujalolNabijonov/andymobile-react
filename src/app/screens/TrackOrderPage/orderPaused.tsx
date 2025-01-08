@@ -1,9 +1,7 @@
 import { Box, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material"
-import { useRef, useState} from "react"
+import { useRef} from "react"
 import { stringSplitterHandler } from "../../components/features/stringSplitter"
-import { AddCircle, RemoveCircle } from "@mui/icons-material"
 import { OrderItem } from "../../../libs/types/order"
-import OrderServiceApi from "../../apiServices/orderServiceApi"
 import { serverApi } from "../../../libs/config"
 
 //Redux
@@ -26,14 +24,6 @@ const OrderPaused = (props: any) => {
     //Handlers
     function TabPanel(props: any) {
         const { children, value, index, ...other } = props;
-
-    async function handleSubmitOrder(){
-        try{
-
-        }catch(err){
-
-        }
-    }
 
         return (
             <div

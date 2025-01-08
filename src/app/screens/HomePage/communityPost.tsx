@@ -72,7 +72,7 @@ function CommunityPosts(props: any) {
                     const image_url = blog.blog_images[0] ? `${serverApi}/${blog.blog_images[0]}` : "/pictures/community/cute_girl.jpg";
                     const user_image = blog.mb_data.mb_image ? `${serverApi}/${blog.mb_data.mb_image}` : "/pictures/auth/default_user.svg"
                     return (
-                        <Box className={"post_card"} onClick={() => handleOpenPost(blog)}>
+                        <Box className={"post_card"} onClick={() => handleOpenPost(blog)} key={index}>
                             <div className="post_img">
                                 <div className="img_wrapper">
                                     <img src={image_url} alt="" className='w-100' />

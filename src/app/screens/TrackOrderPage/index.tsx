@@ -7,13 +7,13 @@ import { useTheme } from "@mui/material"
 import "../../css/trackOrderPage.css"
 
 //REDUX
+import Moment from "react-moment";
 import { createSelector } from "reselect"
 import { Dispatch } from "@reduxjs/toolkit";
 import { setChosenOrder, setChosenTargetTransaction, setTargetOrders } from "./slice";
 import { chosenOrderRetrieve, targetOrdersRetrieve } from "./selector";
 import { useDispatch, useSelector } from "react-redux";
 import { stringSplitterHandler } from "../../components/features/stringSplitter";
-import Moment from "react-moment";
 import { sweetFailureProvider, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert";
 import { verifiedMemberData } from "../../apiServices/verified";
 import Definer from "../../../libs/Definer";
@@ -109,6 +109,7 @@ const TrackOrderPage = (props: any) => {
                 setValue(1);
                 break;
             case "FINISHED":
+                break;
             case "DELIVERED":
                 setValue(2);
                 break;
@@ -133,6 +134,7 @@ const TrackOrderPage = (props: any) => {
                 case "PROCESS":
                     setValue(1);
                     break;
+                //@ts-ignore
                 case "FINISHED" || "DELIVERED":
                     setValue(2);
                     break;

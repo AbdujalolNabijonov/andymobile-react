@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Product } from "../../../libs/types/product";
 import { setChosenProduct, setProductReview } from "./slice";
 import { chosenProductRetriever, productReviewRetriever } from "./selector";
-import { serverApi } from "../../../libs/config";
+import { kakaoSecretKey, serverApi } from "../../../libs/config";
 import { Review } from "../../../libs/types/review";
 import CommunityServiceApi from "../../apiServices/communityServiceApi";
 import { NewProducts } from "../HomePage/releasedProducts";
@@ -33,8 +33,9 @@ import { BasketItem } from "../../../libs/types/order";
 import assert from "assert";
 import Definer from "../../../libs/Definer";
 import { sweetErrorHandling } from "../../../libs/sweetAlert";
+
+//KAKAO
 import KakaoMap from "../../components/features/kakaoMap";
-import { useKakaoLoader as useKakaoLoaderOrigin } from "react-kakao-maps-sdk";
 
 //SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -56,7 +57,7 @@ export const ChosenProduct = (props: any) => {
     //Initilizations
     const { product_id } = useParams<{ product_id: string }>(),
         [chosenColor, setChosenColor] = useState<string>(""),
-        [value, setValue] = useState<string>("1"),
+        [value, setValue] = useState<number>(1),
         [scrolled, setScrolled] = useState<boolean>(false),
         [termsAgree, setTermsAgree] = useState<boolean>(false),
         [openChat, setOpenChat] = useState<boolean>(false),
@@ -82,7 +83,6 @@ export const ChosenProduct = (props: any) => {
             }
         ),
         history = useHistory()
-
     //3 circle React Hook
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -108,21 +108,40 @@ export const ChosenProduct = (props: any) => {
     }, [reBuild])
     //lifecirle
     useEffect(() => {
-        if (chosenProduct && chosenProduct.company_data && chosenProduct.company_data.mb_address) {
-            const geocoder = new kakao.maps.services.Geocoder();
-            const addressToSearch = chosenProduct.company_data.mb_address;
-            geocoder.addressSearch(addressToSearch, (result: any, status) => {
-                if (status === kakao.maps.services.Status.OK) {
-                    const newcoords = { lat: parseFloat(result[0].y), lng: parseFloat(result[0].x) };
-                    setCoords(newcoords);
+        if (!kakaoSecretKey) {
+            console.error('Kakao secret key is missing!');
+            return;
+        }
+
+        if (window.kakao && window.kakao.maps) {
+            // Wait until Kakao Maps API is fully ready
+            window.kakao.maps.load(() => {
+                if (chosenProduct?.company_data?.mb_address) {
+                    const geocoder = new window.kakao.maps.services.Geocoder();
+                    const addressToSearch = chosenProduct.company_data.mb_address;
+
+                    geocoder.addressSearch(addressToSearch, (result, status) => {
+                        if (status === window.kakao.maps.services.Status.OK) {
+                            const newcoords = {
+                                lat: parseFloat(result[0].y),
+                                lng: parseFloat(result[0].x),
+                            };
+                            setCoords(newcoords);
+                        } else {
+                            console.error('Address search failed:', status);
+                        }
+                    });
                 }
             });
+        } else {
+            console.error('Kakao Maps API is not fully loaded!');
         }
-    }, [chosenProduct])
+    }, [chosenProduct]);
+
     //Handlers
     function handleOpenChat() { setOpenChat(true) };
     function handleCloseChat() { setOpenChat(false) };
-    function handleValue(order: string) { setValue(order) }
+    function handleValue(e: any, newValue: number) { setValue(newValue) }
     function handleChosenColor(color: string, id: string) {
         setChosenColor(color)
         window.location.replace(`/products/product/${id}`)
@@ -151,7 +170,6 @@ export const ChosenProduct = (props: any) => {
                 costumize_product_contract: productObj.costumize_product_contract,
                 product_discount: chosenProduct.product_discount
             }
-            console.log(cartItem)
             props.handleSaveBasket(cartItem)
         } catch (err) {
             await sweetErrorHandling(err)
@@ -430,7 +448,7 @@ export const ChosenProduct = (props: any) => {
                             {
                                 //@ts-ignore
                                 Array.from({ length: chosenProduct?.product_contract + 1 }).map((ele, index: number) => {
-                                    if (index % 3 == 0 && index != 0) {
+                                    if (index % 3 === 0 && index !== 0) {
                                         return (<option value={index}>{index} months contract</option>)
                                     }
                                 })
@@ -477,12 +495,12 @@ export const ChosenProduct = (props: any) => {
             </Stack>
             <hr />
             <Box className={"container"}>
-                <TabContext value={value}>
+                <TabContext value={String(value)}>
                     <Stack alignItems={"center"}>
-                        <Tabs className={"mt-5s"}>
-                            <Tab value={"1"} className={value == "1" ? "chosen_product_tab text-dark fw-bold" : "chosen_product_tab"} label="Description" onClick={() => handleValue("1")} />
-                            <Tab value={"2"} className={value == "2" ? "chosen_product_tab text-dark fw-bold" : "chosen_product_tab"} label="Review" onClick={() => handleValue("2")} />
-                            <Tab value={"3"} className={value == "3" ? "chosen_product_tab text-dark fw-bold" : "chosen_product_tab"} label="Leave A REVIEW" onClick={() => handleValue("3")} />
+                        <Tabs className={"mt-5s"} onChange={handleValue}>
+                            <Tab value={1} className={value === 1 ? "chosen_product_tab text-dark fw-bold" : "chosen_product_tab"} label="Description" />
+                            <Tab value={2} className={value === 2 ? "chosen_product_tab text-dark fw-bold" : "chosen_product_tab"} label="Review" />
+                            <Tab value={3} className={value === 3 ? "chosen_product_tab text-dark fw-bold" : "chosen_product_tab"} label="Leave A REVIEW" />
                         </Tabs>
                     </Stack>
                     <TabPanel value={"1"}>

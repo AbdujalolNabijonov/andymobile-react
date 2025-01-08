@@ -10,7 +10,7 @@ export const DealContract = () => {
     //3circle React Hook
     useEffect(() => {
         const options = {
-            strings: ["ow, You can even pay monthly."],
+            strings: ["Now, You can even pay monthly."],
             startDelay: 300,
             typeSpeed: 70,
             backSpeed: 50,
@@ -19,7 +19,7 @@ export const DealContract = () => {
             showCursor: false,
             loop: true,
         }
-        const typed = new Typed(textRef.current, options)
+        new Typed(textRef.current, options)
     }, [])
     return (
         <Box className="deal-contract">
@@ -37,14 +37,14 @@ export const DealContract = () => {
                     <div className="deal_info">
                         <div
                             className="deal_title fs-1 fw-bold"
-                            style={{ width: "572px" }}
+                            style={{ width: "572px", height:"50px" }}
                         >
-                            N<span ref={textRef}></span>
+                            {""}<span ref={textRef}></span>
                         </div>
-                        <p className="text-secondary fs-6">
+                        <div className="text-secondary fs-6">
                             <div className="d-none"></div>
                             <div> We offer to our trustfull clients to buy product for monthly payment.</div>
-                        </p>
+                        </div>
 
                         <Stack
                             flexDirection={"row"}
