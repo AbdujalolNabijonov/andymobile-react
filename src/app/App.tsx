@@ -15,14 +15,14 @@ import { ProductNavbar } from './components/headers/productNavbar'
 import Chatting from './components/features/chattingModal'
 import { sweetErrorHandling, sweetTopSmallSuccessAlert } from '../libs/sweetAlert'
 import { MemberServiceApi } from './apiServices/memberServiceApi'
-import MemberPage from './screens/MyPage/index'
+import MemberPage from './screens/MyPageTemp/index'
 import "./css/general.css"
 import "./css/navbar.css"
 
 //REDUX
 import { Dispatch } from '@reduxjs/toolkit'
 import { WishListItem } from '../libs/types/others'
-import { setWishListItems } from './screens/MyPage/slice'
+import { setWishListItems } from './screens/MyPageTemp/slice'
 import { useDispatch } from 'react-redux'
 import { BasketItem, OrderItem } from '../libs/types/order'
 import { verifiedMemberData } from './apiServices/verified'
