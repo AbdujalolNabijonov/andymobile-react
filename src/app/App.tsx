@@ -25,6 +25,7 @@ import { WishListItem } from '../libs/types/others'
 import { setWishListItems } from './screens/MyPage/slice'
 import { useDispatch } from 'react-redux'
 import { BasketItem, OrderItem } from '../libs/types/order'
+import { verifiedMemberData } from './apiServices/verified'
 
 
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -214,7 +215,9 @@ const App: React.FC = () => {
         setOrdersAmount={setOrdersAmount}
         ordersAmount={ordersAmount}
       />
-      <Chatting />
+      {
+        verifiedMemberData && verifiedMemberData._id ? <Chatting /> : null
+      }
     </div>
   )
 }

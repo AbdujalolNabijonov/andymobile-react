@@ -1,3 +1,4 @@
+import { Member } from "./member";
 import { Product } from "./product";
 
 export interface HomePageProducts {
@@ -64,8 +65,7 @@ export interface View {
     view_group: string;
 }
 export interface Message {
-    msg_sender: string,
-    mb_img: string,
-    mb_id: string,
-    msg_text: string,
+    event:string;
+    text:string;
+    memberData:Member
 }

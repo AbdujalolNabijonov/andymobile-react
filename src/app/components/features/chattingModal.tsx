@@ -11,6 +11,7 @@ import CommunityServiceApi from "../../apiServices/communityServiceApi";
 import { Message } from "../../../libs/types/others";
 import "../../css/chattingBadge.css";
 import { RippleBadge } from "./ripleBadge";
+import { serverApi } from "../../../libs/config";
 
 const Chatting = () => {
     //Initilizations
@@ -22,33 +23,34 @@ const Chatting = () => {
     const refs: any = useRef([]);
     const [rebuild, setRebuild] = useState<Date>(new Date())
     //LifeCircle
+
     useEffect(() => {
         socket.connect();
         socket?.on("connnect", () => {
         })
-        socket?.on("totalUser", (data: any) => {
-            setOnlineUsers(data.totalUser)
+        socket?.on("info", (data: any) => {
+            const dataObj = JSON.parse(data);
+            const { totalClients } = dataObj
+            setOnlineUsers(totalClients)
         })
-        socket?.on("newMsgApp", (msg: Message) => {
-            messages.push(msg)
-            setAllMessages([...messages])
+
+        socket?.on("getMessages", (data: any) => {
+            const dataObj = JSON.parse(data);
+            const {messages} = dataObj
+            setAllMessages(messages)
         })
-        if (verifiedMemberData) {
-            const communityServiceApi = new CommunityServiceApi();
-            communityServiceApi.getAllMessages().then((data: Message[]) => setAllMessages(data.reverse())).catch((err: any) => console.log(err))
-        }
     }, [socket, rebuild])
+
     //Handlers
     async function handleSubmitMsg() {
         try {
             assert.ok(context, Definer.input_err1)
             assert.ok(verifiedMemberData, Definer.auth_err1)
-            socket?.emit("createMsgApp", {
-                mb_id: verifiedMemberData?._id,
-                mb_img: verifiedMemberData.mb_image,
-                msg_sender: verifiedMemberData?.mb_nick,
-                msg_text: context,
-            })
+            const messagePayload ={
+                event:"message",
+                text:context
+            }
+            socket?.emit("message", JSON.stringify(messagePayload))
             refs.current['text'].value = ''
             setContext("");
             setRebuild(new Date())
@@ -103,7 +105,7 @@ const Chatting = () => {
             <Box className="chatting-body">
                 {
                     messages && messages[0] ? messages.map((message: Message, index: number) => {
-                        if (message.mb_id === verifiedMemberData._id) {
+                        if (message.memberData._id === verifiedMemberData._id) {
                             return (
                                 <Box
                                     flexDirection={"row"}
@@ -112,10 +114,11 @@ const Chatting = () => {
                                     justifyContent={"flex-end"}
                                     sx={{ m: "10px 0px" }}
                                 >
-                                    <div className={"msg_right"}>{message.msg_text}</div>
+                                    <div className={"msg_right"}>{message.text}</div>
                                 </Box>
                             )
                         } else {
+                            const image_url = message.memberData.mb_image?`${serverApi}/${message.memberData.mb_image}`:"/pictures/auth/default_user.svg"
                             return (
                                 <Box
                                     flexDirection={"row"}
@@ -123,10 +126,10 @@ const Chatting = () => {
                                     sx={{ m: "10px 0px" }}
                                 >
                                     <Avatar
-                                        alt={message.msg_sender}
-                                        src={message.mb_img}
+                                        alt={message.text}
+                                        src={image_url}
                                     />
-                                    <div className={"msg_left"}>{message.msg_text}</div>
+                                    <div className={"msg_left"}>{message.text}</div>
                                 </Box>
                             )
                         }

@@ -113,18 +113,6 @@ class CommunityServiceApi {
             throw err
         }
     }
-    async getAllMessages():Promise<Message[]>{
-        try{
-            const url =`${this.path}/socketIo/getAllMessages/`;
-            const result = await axios.get(url,{withCredentials:true});
-            console.log(`GET:  getAllMessages state, ${result.data.state}`)
-            const messages:Message[]=result.data.value;
-            console.log(messages)
-            return messages
-        }catch(err:any){
-            throw err
-        }
-    }
 }
 
 export default CommunityServiceApi
