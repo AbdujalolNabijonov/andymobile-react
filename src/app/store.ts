@@ -4,7 +4,7 @@ import homePageReducer from './screens/HomePage/slice';
 import brandPageReducer from './screens/BrandPage/slice';
 import productPageReducer from './screens/ProductsPage/slice';
 import blogPageReducer from './screens/BlogPage/slice';
-import memberPageReducer from './screens/MyPageTemp/slice';
+import memberPageReducer from './screens/MyPage/slice';
 import orderPageReducer from './screens/TrackOrderPage/slice';
 
 
