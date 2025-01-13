@@ -1,10 +1,12 @@
+import React, { useState } from "react";
 import { Box, Stack } from "@mui/material";
 import Slider, { SliderThumb } from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
-import { Brand } from "../../../libs/types/member";
-import { serverApi } from "../../../libs/config";
-import { useState } from "react";
-import { useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { Direction } from "../../libs/enums/product";
+import { ProductSearchObject } from "../../libs/types/product";
+import { Brand } from "../../libs/types/member";
+import { serverApi } from "../../libs/config";
 
 const colorsList = [
     { color: "Black", index: "#000000" },
@@ -20,29 +22,38 @@ const colorsList = [
     { color: "Yellow", index: "#FEEF00" }
 ]
 
-export const ProductFilter = (props: any) => {
+interface ProductFilterProps {
+    searchObj: ProductSearchObject;
+    setSearchObj: any;
+    allBrands: Brand[]
+    company_id: string
+}
+
+export const ProductFilter = (props: ProductFilterProps) => {
     //Initializations
-    const [chosenBrand, setChosenBrand] = useState<string>("");
-    const [priceRange, setPriceRange] = useState<number[]>([400000, 4000000]);
-    const [filterChosenColor, setFilterChosenColor] = useState<string>("");
-    const [chosenStorage, setChosenStorage] = useState<number>();
+    const { searchObj, setSearchObj, allBrands, company_id } = props
+    const [chosenBrand, setChosenBrand] = useState<string>(searchObj.search.company_id ?? "");
+    const [priceRange, setPriceRange] = useState<{ start: number, end: number }>(searchObj.search.priceRange ?? { start: 400000, end: 4000000 });
+    const [filterChosenColor, setFilterChosenColor] = useState<string>(searchObj.search.color ?? "");
+    const [chosenStorage, setChosenStorage] = useState<number>(searchObj.search.memory??0);
     const location = useHistory()
     //Handlers
-    function handleBrand(brand: string, id: string) {
-        setChosenBrand(brand)
-        props.searchObj.company_id = id;
-        props.setSearchObj({ ...props.searchObj })
+    function handleBrand(e: React.MouseEvent<HTMLElement>) {
+        const brandId = e.currentTarget.getAttribute("key") ?? ""
+        setChosenBrand(brandId)
+        searchObj.search.company_id = brandId;
+        setSearchObj({ ...searchObj })
     }
-    function handleFilterColor(colorIndex: string, color: string) {
-        setFilterChosenColor(colorIndex)
-        props.searchObj.color = color;
-        props.setSearchObj({ ...props.searchObj })
+    function handleFilterColor(e: React.MouseEvent<HTMLElement>, color: string) {
+        setFilterChosenColor(color)
+        searchObj.search.color = color;
+        setSearchObj({ ...searchObj })
     }
 
     function handleStorage(storage: number) {
         setChosenStorage(storage)
-        props.searchObj.storage = storage;
-        props.setSearchObj({ ...props.searchObj })
+        searchObj.search.memory = storage;
+        setSearchObj({ ...searchObj })
     }
     interface AirbnbThumbComponentProps extends React.HTMLAttributes<unknown> { }
 
@@ -111,13 +122,11 @@ export const ProductFilter = (props: any) => {
                                     getAriaLabel={(index) =>
                                         index === 0 ? "Minimum price" : "Maximum price"
                                     }
-                                    defaultValue={priceRange}
+                                    defaultValue={[priceRange.start, priceRange.end]}
                                     onChangeCommitted={(e, newValue) => {
                                         const newPriceRange = newValue as number[];
-                                        props.searchObj.minPrice = newPriceRange[0]
-                                        props.searchObj.maxPrice = newPriceRange[1]
-                                        props.setSearchObj({ ...props.searchObj })
-                                        setPriceRange(newPriceRange);
+                                        setSearchObj({ ...searchObj, search: { ...searchObj.search, priceRange: { start: newPriceRange[0], end: newPriceRange[1] } } })
+                                        setPriceRange({ start: newPriceRange[0], end: newPriceRange[1] });
                                     }}
                                     sx={{
                                         mt: "10px",
@@ -140,8 +149,8 @@ export const ProductFilter = (props: any) => {
                                 justifyContent={"space-between"}
                                 className="ps-3 pe-3"
                             >
-                                <div>Starting Price: <span><b>{priceRange[0]}₩</b></span></div>
-                                <div>Max Price: <span><b>{priceRange[1]}₩</b></span></div>
+                                <div>Starting Price: <span><b>{priceRange.start}₩</b></span></div>
+                                <div>Max Price: <span><b>{priceRange.end}₩</b></span></div>
                             </Stack>
                         </div>
                     </div>
@@ -162,14 +171,19 @@ export const ProductFilter = (props: any) => {
                                     id=""
                                     className="form-select"
                                     onChange={(e: any) => {
-                                        props.searchObj.contractMonth = e.target.value;
-                                        props.setSearchObj({ ...props.searchObj })
+                                        const months = e.target.value.split(",")
+                                        if (!months.length) {
+                                            delete setSearchObj.contractMonth
+                                        } else {
+                                            searchObj.search.contarctRange = { start: months[0], end: months[1] }
+                                        }
+                                        setSearchObj({ ...searchObj })
                                     }}
                                 >
-                                    <option value={["0", "24"]}>Deal month contract</option>
-                                    <option value={["0", "6"]}>0 ~ 6 months</option>
-                                    <option value={['6', "12"]}>6 ~ 12 months</option>
-                                    <option value={["12", "24"]}>12 ~ 24 months</option>
+                                    <option value={[]}>Deal month contract</option>
+                                    <option value={["0", "6"]} selected={JSON.stringify(searchObj.search.contarctRange) === JSON.stringify({ start: 0, end: 6 })}>0 ~ 6 months</option>
+                                    <option value={['6', "12"]} selected={JSON.stringify(searchObj.search.contarctRange) === JSON.stringify({ start: 6, end: 12 })}>6 ~ 12 months</option>
+                                    <option value={["12", "24"]} selected={JSON.stringify(searchObj.search.contarctRange) === JSON.stringify({ start: 12, end: 24 })}>12 ~ 24 months</option>
                                 </select>
                             </Stack>
                             <div className="text-center text-danger">Monthly fee in Korean currency, Won</div>
@@ -195,13 +209,14 @@ export const ProductFilter = (props: any) => {
                                     justifyContent={"center"}
                                     alignItems={"satrt"}
                                 >
-                                    {props.allBrands.map((ele: Brand, index: number) => {
+                                    {allBrands.map((ele: Brand, index: number) => {
                                         const image_url = `${serverApi}/${ele.mb_image}`
                                         return (
                                             <Box
                                                 className="brand_box"
-                                                style={chosenBrand === index.toString() ? { border: "2px solid black" } : {}}
-                                                onClick={() => handleBrand((index.toString()), ele._id)}
+                                                style={ele._id === chosenBrand ? { border: "2px solid black" } : {}}
+                                                onClick={handleBrand}
+                                                key={ele._id}
                                             >
                                                 <div className="brand_img">
                                                     <img src={image_url} alt="apple_logo" className="w-100 rounded" />
@@ -232,11 +247,12 @@ export const ProductFilter = (props: any) => {
                                 gap={"5px"}
                                 justifyContent={"start"}
                             >
-                                {colorsList.map((ele, index) => (
+                                {colorsList.map((ele: any, index: number) => (
                                     <Box
+                                        key={index}
                                         className="colour_choose"
-                                        onClick={() => handleFilterColor(index.toString(), ele.color)}
-                                        style={filterChosenColor === index.toString() ? { border: "3px solid #1978BB" } : {}}
+                                        onClick={(e: React.MouseEvent<HTMLElement>) => handleFilterColor(e, ele.color)}
+                                        style={filterChosenColor === ele.color ? { border: "3px solid #1978BB" } : {}}
                                     >
                                         <div style={{ backgroundColor: `${ele.index}` }}></div>
                                         <div className="text-center">{ele.color}</div>
@@ -296,18 +312,18 @@ export const ProductFilter = (props: any) => {
                         window.location.reload()
                     } else {
                         const new_search = {
-                            limit: 6,
-                            company_id: "",
-                            order: "createdAt",
                             page: 1,
-                            maxPrice: 0,
-                            minPrice: 0,
-                            contractMonth: [],
-                            color: "",
-                            storage: null,
-                            search: ""
+                            limit: 6,
+                            order: "createdAt",
+                            direction:Direction.DESC,
+                            search:{
+                                priceRange:{
+                                    start:40000,
+                                    end:4000000
+                                }
+                            }
                         }
-                        props.setSearchObj({ ...new_search })
+                        setSearchObj({ ...new_search })
                     }
                 }}
             >

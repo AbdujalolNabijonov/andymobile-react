@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Backdrop, Fade, Modal } from "@material-ui/core"
 import { Box, Stack } from "@mui/material"
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert";
 import assert from "assert"
 import { MemberServiceApi } from "../../apiServices/memberServiceApi";
-import { SignUpMember } from "../../../libs/types/member";
-import Definer from "../../../libs/Definer";
+import { SignUpMember } from "../../libs/types/member";
+import Definer from "../../libs/Definer";
 import "./../../css/authModal.css"
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../libs/sweetAlert";
 
 
 export const AuthenticationModal = (props: any) => {
@@ -25,7 +25,7 @@ export const AuthenticationModal = (props: any) => {
     const handleSignUpRequest = async () => {
         try {
             const isFullFilled = (mb_nick !== "" && email !== "") && (password !== "" && checkPassword !== "")
-            const signUpData: SignUpMember = {
+            const signUpData: SignUpMember= {
                 mb_nick: mb_nick,
                 mb_password: password,
                 mb_email: email,

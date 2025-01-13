@@ -4,18 +4,19 @@ import { Autoplay } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Favorite } from "@mui/icons-material"
 import ProductServiceApi from "../../apiServices/productServiceApi"
+import { stringSplitterHandler } from "../../components/features/stringSplitter"
+import { useHistory, useLocation } from "react-router-dom"
+import { handleLikeItem } from "../../components/features/likeItem"
+import { Product } from "../../libs/types/product"
+import { serverApi } from "../../libs/config"
 
 //redux
 import { Dispatch } from "@reduxjs/toolkit";
-import { Product } from "../../../libs/types/product";
 import { setRandomNewProducts } from "./slice";
 import { createSelector } from "reselect";
 import { retrieveRandomProducts } from "./selector"
 import { useDispatch, useSelector } from "react-redux"
-import { serverApi } from "../../../libs/config"
-import { stringSplitterHandler } from "../../components/features/stringSplitter"
-import { useHistory, useLocation } from "react-router-dom"
-import { handleLikeItem } from "../../components/features/likeItem"
+import { Direction } from "../../libs/enums/product"
 
 //REDUX Slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -39,7 +40,7 @@ export const NewProducts = (props: any) => {
     //3 circle
     useEffect(() => {
         const productServiceApi = new ProductServiceApi();
-        productServiceApi.getTargetProducts(props.searchProducts)
+        productServiceApi.getTargetProducts({page:1, limit:10, order:"createdAt", direction:Direction.DESC, search:{}})
             .then(data => setRandomNewProducts(data)).catch(err => {
                 console.log(err)
             })
@@ -79,10 +80,11 @@ export const NewProducts = (props: any) => {
                     let image_url_1 = `${serverApi}/${ele.product_images[0]}`,
                         image_url_2 = ele.product_images[1] ? `${serverApi}/${ele.product_images[1]}` : `/pictures/products/${ele.product_color}_phone.webp`,
                         discount_price = ele.product_price - (ele.product_price * (ele.product_discount / 100))
+                        console.log(image_url_1)
                     return (
                         <SwiperSlide
                             className="swiper-card"
-                            key={index}
+                            key={ele._id}
                         >
                             <Box className={"slider-card border-0"} id="card">
                                 <div className="card-img product_fade">

@@ -1,6 +1,6 @@
 import UniversalCookie from "universal-cookie"
-import { serverApi } from "../../libs/config";
-import { Member } from "../../libs/types/member";
+import { serverApi } from "../libs/config";
+import { Member } from "../libs/types/member";
 
 const cookies = new UniversalCookie()
 const doesExistToken = cookies.get("access_token");

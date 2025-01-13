@@ -1,15 +1,15 @@
-import {Modal } from "@material-ui/core"
+import React, { useState } from "react"
+import { Modal } from "@material-ui/core"
 import { Backdrop, Box, Stack } from "@mui/material"
-import { useState } from "react"
-import { OrderItem } from "../../../libs/types/order"
-import { serverApi } from "../../../libs/config"
 import { stringSplitterHandler } from "../features/stringSplitter"
 import { AddCircle, RemoveCircle } from "@mui/icons-material"
-import {  sweetFailureProvider } from "../../../libs/sweetAlert"
 import OrderServiceApi from "../../apiServices/orderServiceApi"
 import { useHistory } from "react-router-dom"
 import { verifiedMemberData } from "../../apiServices/verified"
-import Definer from "../../../libs/Definer"
+import { OrderItem } from "../../libs/types/order"
+import Definer from "../../libs/Definer"
+import { sweetFailureProvider } from "../../libs/sweetAlert"
+import { serverApi } from "../../libs/config"
 
 export const Basket = (props: any) => {
     //Initializations
@@ -82,6 +82,7 @@ export const Basket = (props: any) => {
                             const total_price = basket.item_price * basket.item_quantity;
                             return (
                                 <Stack
+                                    key={basket._id}
                                     direction={"row"}
                                     justifyContent={"space-between"}
                                     style={{ padding: "20px 10px", borderBottom: "1px solid Black" }}

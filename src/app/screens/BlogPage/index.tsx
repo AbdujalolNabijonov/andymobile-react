@@ -1,17 +1,17 @@
+import { useEffect, useState } from "react"
 import { TabContext, TabList, TabPanel } from "@mui/lab"
 import { Box, Container, Pagination, PaginationItem, Stack, Tab } from "@mui/material"
 import { BlogsPage } from "./blogs"
-import { useEffect, useState } from "react"
 import { ArrowBack, ArrowForward } from "@mui/icons-material"
 import { Route, Switch, useRouteMatch } from "react-router-dom"
 import { ViewerPage } from "../../components/tuiEditor/tuiViewer"
 import CommunityServiceApi from "../../apiServices/communityServiceApi"
+import { Blog } from "../../libs/types/blog"
 import "../../css/blogPage.css"
 
 //REDUX
 import { createSelector } from "reselect";
 import { Dispatch } from "@reduxjs/toolkit"
-import { Blog } from "../../../libs/types/blog"
 import { setTargetBlogs } from "./slice"
 import { retrieveTargetBlogs } from "./selector"
 import { useDispatch, useSelector } from "react-redux"

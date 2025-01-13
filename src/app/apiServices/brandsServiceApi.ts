@@ -1,8 +1,9 @@
 import axios from "axios"
-import { serverApi } from "../../libs/config"
-import { Brand } from "../../libs/types/member"
-import { searchTargetBrands } from "../../libs/types/others"
-import Definer from "../../libs/Definer"
+import { searchTargetBrands } from "../libs/types/others";
+import { serverApi } from "../libs/config";
+import { Brand } from "../libs/types/member";
+import Definer from "../libs/Definer";
+
 
 class BrandsServiceApi {
     private readonly path: string

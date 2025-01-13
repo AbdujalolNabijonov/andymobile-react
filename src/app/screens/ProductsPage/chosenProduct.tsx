@@ -10,18 +10,7 @@ import ReviewWriting from "./reviewWriting";
 import ChattingClient from "../../components/features/clientChattingModal";
 import ProductServiceApi from "../../apiServices/productServiceApi";
 import ReactImageMagnify from "react-image-magnify"
-import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
 import { stringSplitterHandler } from "../../components/features/stringSplitter"
-
-//REDUX
-import { Dispatch } from "@reduxjs/toolkit"
-import { createSelector } from "reselect"
-import { useDispatch, useSelector } from "react-redux"
-import { Product } from "../../../libs/types/product";
-import { setChosenProduct, setProductReview } from "./slice";
-import { chosenProductRetriever, productReviewRetriever } from "./selector";
-import { kakaoSecretKey, serverApi } from "../../../libs/config";
-import { Review } from "../../../libs/types/review";
 import CommunityServiceApi from "../../apiServices/communityServiceApi";
 import { NewProducts } from "../HomePage/releasedProducts";
 import { AddCircle, Favorite, RemoveCircle } from "@mui/icons-material";
@@ -29,10 +18,22 @@ import { handleViewItem } from "../../components/features/viewItem";
 import { handleLikeItem } from "../../components/features/likeItem";
 import { handleBuyProduct } from "../../components/features/handleBuySingleItem";
 import { DownToUpBtn } from "../../components/features/downToUpBtn";
-import { BasketItem } from "../../../libs/types/order";
+import { Product } from "../../libs/types/product";
+import { Review } from "../../libs/types/review";
+import { kakaoSecretKey, serverApi } from "../../libs/config";
 import assert from "assert";
-import Definer from "../../../libs/Definer";
-import { sweetErrorHandling } from "../../../libs/sweetAlert";
+import Definer from "../../libs/Definer";
+import { BasketItem } from "../../libs/types/order";
+import { sweetErrorHandling } from "../../libs/sweetAlert";
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
+
+//REDUX
+import { Dispatch } from "@reduxjs/toolkit"
+import { createSelector } from "reselect"
+import { useDispatch, useSelector } from "react-redux"
+import { setChosenProduct, setProductReview } from "./slice";
+import { chosenProductRetriever, productReviewRetriever } from "./selector";
+
 
 //KAKAO
 import KakaoMap from "../../components/features/kakaoMap";

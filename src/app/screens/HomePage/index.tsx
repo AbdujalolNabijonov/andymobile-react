@@ -22,7 +22,6 @@ function HomePage(props: any) {
     return (
         <Box className="HomePage">
             <NewProducts
-                searchProducts={{ limit: 10, order: "new", random: true, contractMonth: [] }}
                 setRebuild={props.setRebuild}
                 handleSaveBasket={props.handleSaveBasket}
             />

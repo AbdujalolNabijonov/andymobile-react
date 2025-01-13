@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { Box, Stack } from "@mui/material"
 import { Viewer } from "@toast-ui/react-editor"
-import "@toast-ui/editor/dist/toastui-editor.css"
 import ReviewWriting from "../../screens/ProductsPage/reviewWriting"
 import ProductReview from "../../screens/ProductsPage/productReview"
+import "@toast-ui/editor/dist/toastui-editor.css"
 
 //Redux
 import { createSelector } from "reselect"
@@ -11,8 +11,8 @@ import { chosenBlogRetrieve, targetReviewsRetrieve } from "../../screens/MyPage/
 import { useDispatch, useSelector } from "react-redux"
 import CommunityServiceApi from "../../apiServices/communityServiceApi"
 import { Dispatch } from "@reduxjs/toolkit"
-import { Review } from "../../../libs/types/review"
 import { setTargetReviews } from "../../screens/MyPage/slice"
+import { Review } from "../../libs/types/review"
 
 
 //Slice
@@ -54,13 +54,10 @@ export const ViewerPage = () => {
         >
             <div className="fw-bold text-center fs-2">Single Article</div>
             <div className="text-center fw-bold fs-3">{chosenBlog?.blog_title}</div>
-            <Stack
-                alignItems={"center"}
-            >
+            <Stack alignItems={"center"}>
                 <Viewer
-                    //@ts-ignore
+                    // @ts-ignore
                     initialValue={chosenBlog?.blog_context}
-                    height="600px"
                 />
             </Stack>
             {

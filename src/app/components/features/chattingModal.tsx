@@ -3,12 +3,13 @@ import { Avatar, Box, Button, Stack } from "@mui/material";
 import { socketContext } from "../Context/socketIo";
 import { verifiedMemberData } from "../../apiServices/verified";
 import assert from "assert";
-import Definer from "../../../libs/Definer";
-import { sweetErrorHandling } from "../../../libs/sweetAlert";
-import { Message } from "../../../libs/types/others";
-import "../../css/chattingBadge.css";
 import { RippleBadge } from "./ripleBadge";
-import { serverApi } from "../../../libs/config";
+import "../../css/chattingBadge.css";
+import { Message } from "../../libs/types/others";
+import Definer from "../../libs/Definer";
+import { sweetErrorHandling } from "../../libs/sweetAlert";
+import { serverApi } from "../../libs/config";
+
 
 const Chatting = () => {
     //Initilizations
@@ -33,7 +34,7 @@ const Chatting = () => {
 
         socket?.on("getMessages", (data: any) => {
             const dataObj = JSON.parse(data);
-            const {messages} = dataObj
+            const { messages } = dataObj
             setAllMessages(messages)
         })
     }, [socket, rebuild])
@@ -43,9 +44,9 @@ const Chatting = () => {
         try {
             assert.ok(context, Definer.input_err1)
             assert.ok(verifiedMemberData, Definer.auth_err1)
-            const messagePayload ={
-                event:"message",
-                text:context
+            const messagePayload = {
+                event: "message",
+                text: context
             }
             socket?.emit("message", JSON.stringify(messagePayload))
             refs.current['text'].value = ''
@@ -102,9 +103,10 @@ const Chatting = () => {
             <Box className="chatting-body">
                 {
                     messages && messages[0] ? messages.map((message: Message, index: number) => {
-                        if (message.memberData._id === verifiedMemberData._id) {
+                        if (message.memberData?._id === verifiedMemberData._id) {
                             return (
                                 <Box
+                                    key={index}
                                     flexDirection={"row"}
                                     style={{ display: "flex" }}
                                     alignItems={"flex-end"}
@@ -115,7 +117,7 @@ const Chatting = () => {
                                 </Box>
                             )
                         } else {
-                            const image_url = message.memberData.mb_image?`${serverApi}/${message.memberData.mb_image}`:"/pictures/auth/default_user.svg"
+                            const image_url = message.memberData.mb_image ? `${serverApi}/${message.memberData.mb_image}` : "/pictures/auth/default_user.svg"
                             return (
                                 <Box
                                     flexDirection={"row"}

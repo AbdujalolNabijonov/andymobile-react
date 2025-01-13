@@ -1,5 +1,5 @@
-import { AppRootState } from "../../../libs/types/screen";
 import { createSelector } from "reselect"
+import { AppRootState } from "../../libs/types/screen"
 
 const selectBrandPage = (state: AppRootState) => state.brandPage
 

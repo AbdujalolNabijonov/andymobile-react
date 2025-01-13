@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { Box, Stack, Container } from "@mui/material"
 import { NavLink, useHistory } from "react-router-dom";
-import "../../css/navbar.css"
 import { verifiedMemberData } from "../../apiServices/verified";
 import { MobileNav } from "./mobileNav";
 import { MobileNavTop } from "./mobileNavTop";
+import "../../css/navbar.css"
 
 export const NavbarOthers = (props: any) => {
     //initializations

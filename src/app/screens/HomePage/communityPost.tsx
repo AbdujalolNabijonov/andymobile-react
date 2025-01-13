@@ -1,21 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Box, Stack } from '@mui/material';
 import Marquee from "react-fast-marquee";
+import CommunityServiceApi from '../../apiServices/communityServiceApi';
+import { Favorite } from '@mui/icons-material';
+import { handleLikeItem } from '../../components/features/likeItem';
+import { Blog } from '../../libs/types/blog';
+import { serverApi } from '../../libs/config';
 import Moment from "react-moment"
 
 
 //REDUX
 import { createSelector } from "reselect"
 import { Dispatch } from '@reduxjs/toolkit';
-import { Blog } from '../../../libs/types/blog';
 import { setCommunityPost } from "./slice"
 import { retrieveCommunityPost } from './selector';
-import CommunityServiceApi from '../../apiServices/communityServiceApi';
 import { useDispatch, useSelector } from 'react-redux';
-import { serverApi } from '../../../libs/config';
-import { useHistory } from 'react-router-dom';
-import { Favorite } from '@mui/icons-material';
-import { handleLikeItem } from '../../components/features/likeItem';
 
 
 //SLICE

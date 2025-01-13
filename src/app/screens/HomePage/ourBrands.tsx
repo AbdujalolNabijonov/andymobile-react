@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react"
 import { Box, Container, Stack } from "@mui/material"
 import { Autoplay, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Brand } from "../../../libs/types/member"
+import { useHistory } from "react-router-dom"
+import { Brand } from "../../libs/types/member"
+import { serverApi } from "../../libs/config"
 
 
 //Redux
@@ -10,10 +12,8 @@ import { Dispatch } from "@reduxjs/toolkit"
 import BrandsServiceApi from "../../apiServices/brandsServiceApi"
 import { createSelector } from "reselect"
 import { useDispatch, useSelector } from "react-redux"
-import { serverApi } from "../../../libs/config"
 import { setTopRandomBrands } from "./slice"
 import { retrieveTopRandomBrands } from "./selector"
-import { useHistory } from "react-router-dom"
 
 //Slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -74,7 +74,7 @@ export const OurBrands = () => {
                         {targetTopBrands.map((brand: Brand, index: number) => {
                             const image_url = `${serverApi}/${brand.mb_image}`
                             return (
-                                <SwiperSlide key={index}>
+                                <SwiperSlide key={brand._id}>
                                     <Stack
                                         className="brand_card"
                                         style={{ backgroundColor: logo_Colors[index] }}

@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, EffectFade } from "swiper/modules"
 import { NavLink, useHistory } from "react-router-dom";
 import { verifiedMemberData } from "../../apiServices/verified";
-import DeviceDetect from "../features/deviceDetector";
 import { MobileNav } from "./mobileNav";
 import { MobileNavTop } from "./mobileNavTop";
 import "swiper/css"

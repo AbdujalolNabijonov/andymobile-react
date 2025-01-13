@@ -1,20 +1,21 @@
+import { useHistory } from "react-router-dom";
 import { Box, Stack, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { MemberServiceApi } from "../../apiServices/memberServiceApi";
+import { stringSplitterHandler } from "../../components/features/stringSplitter";
+import { AddCircle, RemoveCircle } from "@mui/icons-material";
+import { wishListItemsRetrieve } from "./selector";
+import { handleBuyProduct } from "../../components/features/handleBuySingleItem";
+import OrderServiceApi from "../../apiServices/orderServiceApi";
+import { WishListItem } from "../../libs/types/others";
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../libs/sweetAlert";
+import { OrderItem } from "../../libs/types/order";
+import { serverApi } from "../../libs/config";
+
 
 //REDUX 
 import { createSelector } from "reselect"
 import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
-import { MemberServiceApi } from "../../apiServices/memberServiceApi";
-import { serverApi } from "../../../libs/config";
-import { stringSplitterHandler } from "../../components/features/stringSplitter";
-import { AddCircle, RemoveCircle } from "@mui/icons-material";
-import { WishListItem } from "../../../libs/types/others";
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert";
-import { wishListItemsRetrieve } from "./selector";
-import { useHistory } from "react-router-dom";
-import { handleBuyProduct } from "../../components/features/handleBuySingleItem";
-import OrderServiceApi from "../../apiServices/orderServiceApi";
-import { OrderItem } from "../../../libs/types/order";
 
 //SELECTOR
 const retrieveWishListItems = createSelector(
@@ -158,7 +159,7 @@ const WishList = (props: any) => {
                                             product.product_price - (product.product_price * (product.product_discount / 100)) :
                                             0;
                                         return (
-                                            <TableRow ref={(ele) => refs[product.product_name] = ele}>
+                                            <TableRow key={index} ref={(ele) => refs[product.product_name] = ele}>
                                                 <TableCell
                                                     align="center"
                                                     style={{

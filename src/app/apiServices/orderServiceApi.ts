@@ -1,6 +1,6 @@
 import axios from "axios";
-import { serverApi } from "../../libs/config";
-import { Order, OrderItem } from "../../libs/types/order";
+import { serverApi } from "../libs/config";
+import { Order, OrderItem } from "../libs/types/order";
 
 class OrderServiceApi {
     private readonly path: string

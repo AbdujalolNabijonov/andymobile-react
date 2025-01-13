@@ -1,1 +1,2 @@
-export const API_URL = process.env.NODE_ENV === "production" ? String(process.env.REACT_APP_API_URL) : String(process.env.REACT_APP_API_URL) 
+export const serverApi = String(process.env.REACT_APP_API_URL)
+export const kakaoSecretKey: string = String(process.env.REACT_APP_KAKAO_API_KEY)

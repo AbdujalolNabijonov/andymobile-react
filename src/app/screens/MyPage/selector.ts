@@ -1,8 +1,7 @@
-import { AppRootState } from "../../../libs/types/screen";
 import { createSelector } from 'reselect'
+import { AppRootState } from '../../libs/types/screen'
+
 const selectMembePage = (state: AppRootState) => state.memberPage
-
-
 export const chosenBankCardRetrieve = createSelector(
     selectMembePage,
     (MemberPage) => MemberPage.chosenBankCard

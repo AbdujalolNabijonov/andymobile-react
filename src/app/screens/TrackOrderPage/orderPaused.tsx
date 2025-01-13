@@ -1,13 +1,13 @@
+import { useRef } from "react"
 import { Box, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material"
-import { useRef} from "react"
 import { stringSplitterHandler } from "../../components/features/stringSplitter"
-import { OrderItem } from "../../../libs/types/order"
-import { serverApi } from "../../../libs/config"
 
 //Redux
 import { createSelector } from "reselect"
 import { chosenOrderRetrieve } from "./selector"
 import { useSelector } from "react-redux"
+import { serverApi } from "../../libs/config"
+import { OrderItem } from "../../libs/types/order"
 
 //SELECTOR
 const retrieveChosenOrder = createSelector(

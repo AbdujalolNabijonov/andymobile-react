@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { Box, Stack } from "@mui/material"
 import { verifiedMemberData } from "../../apiServices/verified"
-import { sweetErrorHandling, sweetTopSmallSuccessAlert, sweetTopSuccessAlert } from "../../../libs/sweetAlert"
 import { MemberServiceApi } from "../../apiServices/memberServiceApi"
 import assert from "assert"
-import Definer from "../../../libs/Definer"
+import { sweetErrorHandling, sweetTopSmallSuccessAlert, sweetTopSuccessAlert } from "../../libs/sweetAlert"
+import Definer from "../../libs/Definer"
 
 
 export const MyAccount = () => {
@@ -114,7 +114,7 @@ export const MyAccount = () => {
                     alignItems={"center"}
                 >
                     <div className="account_img">
-                        <img src={userImg} alt="acccount image" aria-label="Account image" aria-hidden="true"/>
+                        <img src={userImg} alt="acccount image" aria-label="Account image" aria-hidden="true" />
                     </div>
                     <div className="account_info ps-2">
                         <div className="account_name fs-3 fw-bold">{verifiedMemberData?.mb_nick}</div>

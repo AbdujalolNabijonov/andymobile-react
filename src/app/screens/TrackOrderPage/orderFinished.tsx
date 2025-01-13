@@ -1,15 +1,16 @@
 import { Box, Stack, Typography } from "@mui/material"
 import { stringSplitterHandler } from "../../components/features/stringSplitter";
-import { OrderItem } from "../../../libs/types/order";
-import { serverApi } from "../../../libs/config";
+import Moment from "react-moment";
+import { sweetTopSmallSuccessAlert } from "../../libs/sweetAlert";
+import { OrderItem } from "../../libs/types/order";
+import { serverApi } from "../../libs/config";
+
 
 //REDUX
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect"
 import { chosenOrderRetrieve, chosenTargetTransactionRetrieve } from "./selector";
 
-import Moment from "react-moment";
-import { sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert";
 
 
 //SELECTOR

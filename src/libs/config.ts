@@ -1,2 +1,0 @@
-export const serverApi: string = process.env.NODE_ENV === "production" ? String(process.env.REACT_APP_API_PROD) : String(process.env.REACT_APP_API_DEV)
-export const kakaoSecretKey: string = process.env.NODE_ENV === "production" ? String(process.env.REACT_APP_KAKAO_API_KEY) : String(process.env.REACT_APP_KAKAO_API_KEY_DEV)

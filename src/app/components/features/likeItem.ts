@@ -1,6 +1,6 @@
-import Definer from "../../../libs/Definer";
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert";
 import { MemberServiceApi } from "../../apiServices/memberServiceApi";
+import Definer from "../../libs/Definer";
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../libs/sweetAlert";
 
 
 export async function handleLikeItem(e: any, item: any, like_group: string, refs?: any, setRebuild?: any, refresh?: boolean) {

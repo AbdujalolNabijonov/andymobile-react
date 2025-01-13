@@ -1,19 +1,20 @@
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { Box, Pagination, PaginationItem, Stack } from "@mui/material";
-import { Dispatch } from "@reduxjs/toolkit";
-import { FollowInterface } from "../../../libs/types/member";
-import { serverApi } from "../../../libs/config";
-import { sweetErrorHandling, sweetTopSuccessAlert } from "../../../libs/sweetAlert";
 import FollowServiceApi from "../../apiServices/followServiceApi";
-import { useEffect, useState } from "react";
+import { verifiedMemberData } from "../../apiServices/verified";
+import { FollowInterface } from "../../libs/types/member";
+import { sweetErrorHandling, sweetTopSuccessAlert } from "../../libs/sweetAlert";
+import { serverApi } from "../../libs/config";
 
 //Redux
+import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect"
-import { setFollowers} from "./slice";
-import { followersRetrieve} from "./selector";
+import { setFollowers } from "./slice";
+import { followersRetrieve } from "./selector";
 import { useDispatch, useSelector } from "react-redux";
-import { verifiedMemberData } from "../../apiServices/verified";
-import { useHistory } from "react-router-dom";
+
 
 //Slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -46,7 +47,7 @@ export const Followers = (props: any) => {
     }, [reBuild, props.reBuild])
 
     //Handlers
-    async function handleSubscribeMember(e:any,follower: FollowInterface) {
+    async function handleSubscribeMember(e: any, follower: FollowInterface) {
         try {
             e.stopPropagation()
             const followServiceApi = new FollowServiceApi();
@@ -58,7 +59,7 @@ export const Followers = (props: any) => {
             await sweetErrorHandling(err)
         }
     }
-    async function handleUnsubscribeMember(e:any,follower: FollowInterface) {
+    async function handleUnsubscribeMember(e: any, follower: FollowInterface) {
         try {
             e.stopPropagation()
             const followServiceApi = new FollowServiceApi();
@@ -78,15 +79,16 @@ export const Followers = (props: any) => {
             <Stack className="follow" alignItems={"center"}>
                 <Stack gap="20px">
                     {followers[0] ?
-                        followers.map((follower: FollowInterface) => {
+                        followers.map((follower: FollowInterface, index: number) => {
                             const image_url = follower.member_data.mb_image ? `${serverApi}/${follower.member_data.mb_image}` : "/pictures/auth/default_user.svg"
                             return (
                                 <Stack
+                                    key={index}
                                     className={"follow_item"}
                                     flexDirection={"row"}
                                     justifyContent={"space-between"}
                                     alignItems={"center"}
-                                    onClick={()=>{
+                                    onClick={() => {
                                         history.push(`/user-page/other/?mb_id=${follower.following_id}`)
                                         document.location.reload();
                                     }}
@@ -122,7 +124,7 @@ export const Followers = (props: any) => {
                                                     <Stack flexDirection={"row"} gap={"10px"}>
                                                         <button
                                                             className="btn btn-success fw-bold fs-6"
-                                                            onClick={(e) => handleSubscribeMember(e,follower)}
+                                                            onClick={(e) => handleSubscribeMember(e, follower)}
                                                         >
                                                             <Stack
                                                                 flexDirection={"row"}
@@ -135,7 +137,7 @@ export const Followers = (props: any) => {
                                                         </button>
                                                         <button
                                                             className="btn btn-success fw-bold fs-6"
-                                                            onClick={(e) => handleUnsubscribeMember(e,follower)}
+                                                            onClick={(e) => handleUnsubscribeMember(e, follower)}
                                                         >
                                                             <Stack
                                                                 flexDirection={"row"}

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { serverApi } from "../../libs/config";
-import { FollowInterface, SubscribeInterface } from "../../libs/types/member";
+import { serverApi } from "../libs/config";
+import { FollowInterface, SubscribeInterface } from "../libs/types/member";
 
 class FollowServiceApi {
     private path: string

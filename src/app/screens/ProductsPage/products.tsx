@@ -1,11 +1,11 @@
-import { Box, Container, Pagination, PaginationItem, Stack } from "@mui/material";
-import { Product } from "../../../libs/types/product";
 import { useEffect, useRef, useState } from "react";
-import { serverApi } from "../../../libs/config";
+import { Box, Container, Pagination, PaginationItem, Stack } from "@mui/material";
 import { ArrowBack, ArrowForward, Favorite, RemoveRedEye } from "@mui/icons-material";
 import { stringSplitterHandler } from "../../components/features/stringSplitter";
 import { handleLikeItem } from "../../components/features/likeItem";
 import { useHistory } from "react-router-dom";
+import { Product } from "../../libs/types/product";
+import { serverApi } from "../../libs/config";
 
 
 export const Products = (props: any) => {
@@ -15,7 +15,6 @@ export const Products = (props: any) => {
     const [productKey, setPoductKey] = useState<string>("");
     const history = useHistory()
     const refs: any = useRef([])
-
     //Life circle
     useEffect(() => {
         setLoaded(true)

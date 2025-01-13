@@ -9,11 +9,11 @@ import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied
 import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
-import Definer from "../../../libs/Definer";
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert";
 import CommunityServiceApi from "../../apiServices/communityServiceApi";
 import { verifiedMemberData } from "../../apiServices/verified";
 import assert from "assert";
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../libs/sweetAlert";
+import Definer from "../../libs/Definer";
 
 const customIcons: {
     [index: string]: {

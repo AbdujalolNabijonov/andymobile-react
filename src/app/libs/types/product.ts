@@ -1,4 +1,5 @@
-import { Brand, Member } from "./member";
+import { Direction } from "../enums/product";
+import { Brand} from "./member";
 
 export interface Product {
     _id: string;
@@ -30,18 +31,24 @@ export interface Product {
     createdAt: Date;
     updateAt: Date;
 }
+interface Range{
+    start:number,
+    end:number
+}
+
+interface PSearch{
+    company_id?:string;
+    priceRange?:Range
+    contarctRange?:Range;
+    color?:string;
+    memory?:number
+    text?:string
+}
 
 export interface ProductSearchObject {
+    page:number;
     limit: Number;
-    random?: boolean;
-    company_id?: string;
     order: string;
-    page?: number
-    maxPrice?: number | null,
-    minPrice?: number | null;
-    contractMonth?: string[]
-    color?: string;
-    storage?: number | null;
-    search?: string;
-    homeProduct?: string
+    direction:Direction;
+    search:PSearch
 }

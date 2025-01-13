@@ -1,15 +1,15 @@
 import { Box, Stack } from "@mui/material"
 import { Dispatch } from "@reduxjs/toolkit"
+import TransactionServiceApi from "../../apiServices/transactionServiceApi"
+import { stringSplitterHandler } from "../../components/features/stringSplitter"
+import { Bank } from "../../libs/types/bank"
+import Definer from "../../libs/Definer"
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../libs/sweetAlert"
 
 //Redux
 import { createSelector } from "reselect"
-import { Bank } from "../../../libs/types/bank"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useRef, useState } from "react"
-import TransactionServiceApi from "../../apiServices/transactionServiceApi"
-import { stringSplitterHandler } from "../../components/features/stringSplitter"
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert"
-import Definer from "../../../libs/Definer"
 import { setChosenBank } from "./slice"
 import { chosenBankCardRetrieve } from "./selector"
 

@@ -6,12 +6,12 @@ import { HomeProducts } from "./homeProducts";
 //REDUX
 import { createSelector } from "reselect";
 import { Dispatch } from "@reduxjs/toolkit";
-import { Product } from "../../../libs/types/product";
 import { setTargetHomeProducts } from "./slice";
 import { retrieveTargetHomeProducts } from "./selector";
 import { useDispatch, useSelector } from "react-redux";
 import ProductServiceApi from "../../apiServices/productServiceApi";
-import { searchObjHome } from "../../../libs/types/others";
+import { Direction } from "../../libs/enums/product";
+import { Product, ProductSearchObject } from "../../libs/types/product";
 
 //Slice
 const actionDispatch = (dispatch: Dispatch) => (
@@ -31,19 +31,21 @@ const HomeSortProducts = (props: any) => {
     const [value, setValue] = useState<string>("1");
     const { setTargetHomeProducts } = actionDispatch(useDispatch());
     const { targetHomeProducts } = useSelector(targetProductsRetrieve);
-    const [searchObjHome, setSearchObjHome] = useState<searchObjHome>({
-        limit: 4,
+    const [searchObj, setSearchObj] = useState<ProductSearchObject>({
         page: 1,
+        limit: 4,
         order: "sale",
-        homeProduct: "Y",
-        contractMonth: []
+        direction:Direction.DESC,
+        search:{
+
+        }
 
     })
     //three circle hook
     useEffect(() => {
         //Fetching Data
         const productServiceApi = new ProductServiceApi();
-        productServiceApi.getTargetProducts(searchObjHome).then(data => setTargetHomeProducts(data)).catch(err => console.log(err))
+        productServiceApi.getTargetProducts(searchObj).then(data => setTargetHomeProducts(data)).catch(err => console.log(err))
         //handlers
         function handleScroll() {
             setScrolled(window.scrollY > 2400)
@@ -52,48 +54,48 @@ const HomeSortProducts = (props: any) => {
         return () => {
             window.removeEventListener("scroll", handleScroll)
         }
-    }, [value, searchObjHome])
+    }, [value, searchObj])
 
     //handlers
-    const handleProducts = (order: string, status: string) => {
-        const newSearchObj = { ...searchObjHome }
-        newSearchObj.order = status
-        newSearchObj.page = 1
-        setSearchObjHome(newSearchObj)
-        setValue(order)
+    const handleProducts = (e:React.MouseEvent<HTMLElement>, status: string) => {
+        searchObj.order = status
+        setSearchObj({...searchObj})
+    }
+    const handleChangeValue=(e:any,value:number)=>{
+        setValue(String(value))
     }
     return (
         <Container className="homeProducts">
             <TabContext value={value}>
                 <Stack justifyContent={"center"} flexDirection={"row"}>
-                    <TabList>
-                        <Tab className="tab" value="1" label="SALE" onClick={() => handleProducts('1', "sale")} />
-                        <Tab className="tab" value="2" label="NEW" onClick={() => handleProducts('2', "new")} />
-                        <Tab className="tab" value="3" label="POPULAR" onClick={() => handleProducts('3', "popular")} />
+                    <TabList onChange={handleChangeValue}>
+                        <Tab className="tab" value="1" label="SALE" onClick={(e) => handleProducts(e,"product_discount")} />
+                        <Tab className="tab" value="2" label="NEW" onClick={(e) => handleProducts(e, "createdAt")} />
+                        <Tab className="tab" value="3" label="POPULAR" onClick={(e) => handleProducts(e, "product_views")} />
                     </TabList>
                 </Stack>
                 <TabPanel value={"1"}>
                     <HomeProducts
                         scrolled={scrolled}
                         products={targetHomeProducts}
-                        searchObjHome={searchObjHome}
-                        setSearchObjHome={setSearchObjHome}
+                        searchObj={searchObj}
+                        setSearchObj={setSearchObj}
                     />
                 </TabPanel>
                 <TabPanel value={"2"}>
                     <HomeProducts
                         scrolled={scrolled}
                         products={targetHomeProducts}
-                        searchObjHome={searchObjHome}
-                        setSearchObjHome={setSearchObjHome}
+                        searchObj={searchObj}
+                        setSearchObj={setSearchObj}
                     />
                 </TabPanel>
                 <TabPanel value={"3"}>
                     <HomeProducts
                         scrolled={scrolled}
                         products={targetHomeProducts}
-                        searchObjHome={searchObjHome}
-                        setSearchObjHome={setSearchObjHome}
+                        searchObj={searchObj}
+                        setSearchObj={setSearchObj}
                     />
                 </TabPanel>
             </TabContext>

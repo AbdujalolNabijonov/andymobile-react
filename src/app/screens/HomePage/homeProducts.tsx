@@ -1,16 +1,21 @@
 import { Box, Pagination, PaginationItem, Stack } from "@mui/material"
 import { useEffect, useState } from "react"
-import { HomePageProducts } from "../../../libs/types/others"
-import { serverApi } from "../../../libs/config"
-import { Product } from "../../../libs/types/product"
 import { ArrowBack, ArrowForward } from "@mui/icons-material"
 import { stringSplitterHandler } from "../../components/features/stringSplitter"
 import { useHistory } from "react-router-dom"
+import { Product, ProductSearchObject } from "../../libs/types/product"
+import { serverApi } from "../../libs/config"
 
+interface HomeProductsProps {
+    scrolled: boolean
+    products: Product[]
+    searchObj: ProductSearchObject;
+    setSearchObj: any
+}
 
-
-export const HomeProducts = (props: HomePageProducts) => {
+export const HomeProducts = (props: HomeProductsProps) => {
     //Initializations
+    const { scrolled, searchObj, setSearchObj, products } = props
     const [loaded, setLoaded] = useState<boolean>(false)
     const history = useHistory()
     //Three circle Hook
@@ -23,8 +28,8 @@ export const HomeProducts = (props: HomePageProducts) => {
 
     //Handlers
     const handlePaginationChange = (event: any, value: number) => {
-        props.searchObjHome.page = value;
-        props.setSearchObjHome({ ...props.searchObjHome })
+        searchObj.page = value;
+        setSearchObj({ ...searchObj })
     }
     return (
         <Stack
@@ -47,7 +52,7 @@ export const HomeProducts = (props: HomePageProducts) => {
                         <Stack className="card_img" alignItems={"center"}>
                             <img src={image_url_1} alt="" className="product_img_1 w-100" />
                             <img src={image_url_2} alt="" className="product_img_2 w-100" />
-                            <div className="product_badge">{props.searchObjHome.order.toUpperCase()}</div>
+                            <div className="product_badge">{searchObj.order.toUpperCase()}</div>
                         </Stack>
                         <Box className="card__overlay">
                             <Box className="card__header">
@@ -88,7 +93,7 @@ export const HomeProducts = (props: HomePageProducts) => {
                 )
             })}
             <Pagination
-                page={props.searchObjHome.page}
+                page={searchObj.page}
                 onChange={handlePaginationChange}
                 renderItem={(item) => (
                     <PaginationItem
@@ -100,7 +105,7 @@ export const HomeProducts = (props: HomePageProducts) => {
                         color={"secondary"}
                     />
                 )}
-                count={props.searchObjHome.page >= 3 ? props.searchObjHome.page + 1 : 3}
+                count={searchObj.page && searchObj.page >= 3 ? searchObj.page + 1 : 3}
                 className="d-flex justify-content-center bg-transparent mt-2"
                 style={{ boxShadow: "none" }}
             />

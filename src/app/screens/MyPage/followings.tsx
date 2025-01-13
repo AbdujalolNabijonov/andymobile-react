@@ -1,18 +1,18 @@
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { Box, Pagination, PaginationItem, Stack } from "@mui/material";
-import { Dispatch } from "@reduxjs/toolkit";
-import { FollowInterface } from "../../../libs/types/member";
-import { serverApi } from "../../../libs/config";
-import { sweetErrorHandling, sweetTopSuccessAlert } from "../../../libs/sweetAlert";
 import FollowServiceApi from "../../apiServices/followServiceApi";
-import { useEffect, useState } from "react";
+import { FollowInterface } from "../../libs/types/member";
+import { sweetErrorHandling, sweetTopSuccessAlert } from "../../libs/sweetAlert";
+import { serverApi } from "../../libs/config";
 
 //Redux
+import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect"
 import { setFollowings } from "./slice";
 import { followingsRetrieve } from "./selector";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 //Slice
 const actionDispatch = (dispatch: Dispatch) => ({

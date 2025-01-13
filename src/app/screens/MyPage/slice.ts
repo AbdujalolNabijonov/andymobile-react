@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { MemberPageState } from "../../../libs/types/screen";
+import { MemberPageState } from "../../libs/types/screen";
+
 
 const initialState: MemberPageState = {
     chosenMember: null,

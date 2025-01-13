@@ -1,13 +1,13 @@
 import { ArrowBack, ArrowForward, Comment, FavoriteTwoTone, RemoveRedEye } from "@mui/icons-material"
 import { Pagination, PaginationItem, Stack } from "@mui/material"
-import { Blog } from "../../../libs/types/blog"
-import { serverApi } from "../../../libs/config"
 import Moment from "react-moment"
-import { sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert"
 import CommunityServiceApi from "../../apiServices/communityServiceApi"
 import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 import { verifiedMemberData } from "../../apiServices/verified"
+import { sweetTopSmallSuccessAlert } from "../../libs/sweetAlert";
+import { serverApi } from "../../libs/config";
+import { Blog } from "../../libs/types/blog";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 export const TargetPosts = (props: any) => {
 
@@ -55,6 +55,7 @@ export const TargetPosts = (props: any) => {
                             const user_url = blog.mb_data.mb_image ? `${serverApi}/${blog.mb_data.mb_image}` : "/pictures/auth/default_user.svg"
                             return (
                                 <Stack
+                                    key={blog._id}
                                     className={"targetPost position-relative"}
                                     flexDirection={"row"}
                                     gap={"20px"}

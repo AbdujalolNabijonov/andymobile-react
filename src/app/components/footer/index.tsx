@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react"
 import { Box, Stack } from "@mui/material"
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert"
-import { validEmailChecker } from "../../../libs/validEmails"
 import assert from "assert"
-import Definer from "../../../libs/Definer"
 import { useHistory } from "react-router-dom"
+import { validEmailChecker } from "../../libs/validEmail"
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../libs/sweetAlert"
+import Definer from "../../libs/Definer"
 import "../../css/footer.css"
 
 const Footer = () => {

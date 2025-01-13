@@ -1,5 +1,6 @@
 import {createSelector} from "reselect"
-import { AppRootState } from "../../../libs/types/screen"
+import { AppRootState } from "../../libs/types/screen"
+
 const selectOrderPage=(state:AppRootState)=>state.orderPage
 
 

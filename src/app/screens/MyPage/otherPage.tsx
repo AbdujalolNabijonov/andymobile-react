@@ -1,31 +1,32 @@
+import { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
 import { TabContext, TabPanel } from "@mui/lab"
 import { Box, Stack, Tab, Tabs } from "@mui/material"
 import Posts from "./posts"
-import { useEffect, useState } from "react"
 import { verifiedMemberData } from "../../apiServices/verified"
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert"
-import Definer from "../../../libs/Definer"
 import { Followers } from "./followers"
 import Followings from "./followings"
-
-//Redux
-import { createSelector } from "reselect";
-import { MemberServiceApi } from "../../apiServices/memberServiceApi"
-import { Dispatch } from "@reduxjs/toolkit"
-import { Member } from "../../../libs/types/member"
-import { setChosenBlog, setChosenMember, setTargetReviews } from "./slice"
-import { chosenMemberRetrieve } from "./selector"
-import { useDispatch, useSelector } from "react-redux"
 import { ViewerPage } from "../../components/tuiEditor/tuiViewer"
-import { Blog } from "../../../libs/types/blog"
 import CommunityServiceApi from "../../apiServices/communityServiceApi"
-import { Review } from "../../../libs/types/review"
-import { serverApi } from "../../../libs/config"
 import FollowServiceApi from "../../apiServices/followServiceApi"
-import { useHistory } from "react-router-dom"
 import assert from "assert"
 import { handleViewItem } from "../../components/features/viewItem"
 import { DownToUpBtn } from "../../components/features/downToUpBtn"
+import { MemberServiceApi } from "../../apiServices/memberServiceApi"
+import { Member } from "../../libs/types/member"
+import { Blog } from "../../libs/types/blog"
+import { Review } from "../../libs/types/review"
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../libs/sweetAlert"
+import Definer from "../../libs/Definer"
+import { serverApi } from "../../libs/config"
+
+//Redux
+import { createSelector } from "reselect";
+import { Dispatch } from "@reduxjs/toolkit"
+import { setChosenBlog, setChosenMember, setTargetReviews } from "./slice"
+import { chosenMemberRetrieve } from "./selector"
+import { useDispatch, useSelector } from "react-redux"
+
 
 //Slice
 const actionDispatch = (dispatch: Dispatch) => ({

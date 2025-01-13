@@ -1,19 +1,4 @@
-import { Product } from "./product";
-
-export interface HomePageProducts {
-    scrolled: boolean;
-    products: Product[];
-    setSearchObjHome: any;
-    searchObjHome: searchObjHome
-}
-
-export interface searchObjHome {
-    limit: number;
-    page: number;
-    order: string;
-    homeProduct: string;
-    contractMonth: string[]
-}
+import { Member } from "./member";
 
 export interface searchBlogs {
     order?: string,
@@ -64,8 +49,7 @@ export interface View {
     view_group: string;
 }
 export interface Message {
-    msg_sender: string,
-    mb_img: string,
-    mb_id: string,
-    msg_text: string,
+    event:string;
+    text:string;
+    memberData:Member
 }

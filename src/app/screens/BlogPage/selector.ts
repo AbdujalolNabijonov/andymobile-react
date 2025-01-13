@@ -1,5 +1,5 @@
 import { createSelector } from "reselect"
-import { AppRootState } from "../../../libs/types/screen"
+import { AppRootState } from "../../libs/types/screen"
 
 const selectPage = (state: AppRootState) => state.blogPage
 

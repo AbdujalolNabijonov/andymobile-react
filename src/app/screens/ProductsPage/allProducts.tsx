@@ -1,25 +1,26 @@
 import { Box, Container, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
+import ProductServiceApi from "../../apiServices/productServiceApi";
+import { allBrandsRetriever, targetProductsRetriever, targetReviewsRetrieve } from "./selector";
+import BrandsServiceApi from "../../apiServices/brandsServiceApi";
+import { Products } from "./products";
+import { ProductFilter } from "../../components/filters/productFilter";
+import { useHistory, useLocation, useParams } from "react-router-dom";
+import { handleViewItem } from "../../components/features/viewItem";
+import ReviewWriting from "./reviewWriting";
+import ProductReview from "./productReview";
+import CommunityServiceApi from "../../apiServices/communityServiceApi";
+import { DownToUpBtn } from "../../components/features/downToUpBtn";
+import { Direction } from "../../libs/enums/product";
+import { Product, ProductSearchObject } from "../../libs/types/product";
+import { Brand } from "../../libs/types/member";
+import { Review } from "../../libs/types/review";
 
 //REDUX
 import { createSelector } from "reselect"
 import { Dispatch } from "@reduxjs/toolkit";
 import { setAllBrands, setTargetProducts, setTargetReviews } from "./slice";
-import { Product } from "../../../libs/types/product";
 import { useDispatch, useSelector } from "react-redux";
-import ProductServiceApi from "../../apiServices/productServiceApi";
-import { allBrandsRetriever, targetProductsRetriever, targetReviewsRetrieve } from "./selector";
-import { Brand } from "../../../libs/types/member";
-import BrandsServiceApi from "../../apiServices/brandsServiceApi";
-import { Products } from "./products";
-import { ProductFilter } from "../../components/filters/productFilter";
-import { useParams } from "react-router-dom";
-import { handleViewItem } from "../../components/features/viewItem";
-import ReviewWriting from "./reviewWriting";
-import ProductReview from "./productReview";
-import { Review } from "../../../libs/types/review";
-import CommunityServiceApi from "../../apiServices/communityServiceApi";
-import { DownToUpBtn } from "../../components/features/downToUpBtn";
 
 //SLICE
 const actionDispath = (dispatch: Dispatch) => ({
@@ -45,7 +46,7 @@ const retrieverTargetReviews = createSelector(
 
 
 
-const AllProducts = (props: any) => {
+const AllProducts = ({ initialInput, ...props }: any) => {
     //Hook intilizations 
     const [boxSize, setBoxSize] = useState<string>("45%");
     const { setTargetProducts, setTargetReviews } = actionDispath(useDispatch());
@@ -55,18 +56,30 @@ const AllProducts = (props: any) => {
     const { targetReviews } = useSelector(retrieverTargetReviews)
     const { company_id } = useParams<{ company_id: string }>()
     const [rebuild, setRebuild] = useState<Date>(new Date())
-    const [searchObj, setSearchObj] = useState({
-        limit: 6,
-        company_id: company_id,
-        order: "createdAt",
+
+    const location = useLocation()
+    const history = useHistory()
+    const searchQuery = new URLSearchParams(location.search)
+    const inputJson = searchQuery.get("input")
+    const [searchObj, setSearchObj] = useState<ProductSearchObject | any>(JSON.parse(inputJson as string) ??
+    {
         page: 1,
-        maxPrice: 0,
-        minPrice: 0,
-        contractMonth: [],
-        color: "",
-        storage: null,
-        search: ""
-    })
+        limit: 6,
+        order: "createdAt",
+        direction: Direction.DESC,
+        search: {
+            company_id: company_id,
+            priceRange: {
+                start: 40000,
+                end: 4000000
+            },
+        }
+    }
+    )
+
+    useEffect(() => {
+        history.push(`/products/?input=${JSON.stringify(searchObj)}`)
+    }, [searchObj])
     //React Hook 
     useEffect(() => {
         window.scrollTo(0, 0)

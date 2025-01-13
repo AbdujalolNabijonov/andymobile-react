@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Box, Container, Stack, Tab, Tabs } from "@mui/material";
 import OrderServiceApi from "../../apiServices/orderServiceApi";
-import { Order} from "../../../libs/types/order";
 import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@mui/material"
+import { stringSplitterHandler } from "../../components/features/stringSplitter";
+import { verifiedMemberData } from "../../apiServices/verified";
+import OrderPaused from "./orderPaused";
+import OrderProcess from "./orderProcess";
+import OrderFinished from "./orderFinished";
+import TransactionServiceApi from "../../apiServices/transactionServiceApi";
+import { DownToUpBtn } from "../../components/features/downToUpBtn";
+import { Order } from "../../libs/types/order";
+import { Transaction } from "../../libs/types/bank";
+import { sweetFailureProvider, sweetTopSmallSuccessAlert } from "../../libs/sweetAlert";
+import Definer from "../../libs/Definer";
 import "../../css/trackOrderPage.css"
 
 //REDUX
@@ -13,16 +23,6 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { setChosenOrder, setChosenTargetTransaction, setTargetOrders } from "./slice";
 import { chosenOrderRetrieve, targetOrdersRetrieve } from "./selector";
 import { useDispatch, useSelector } from "react-redux";
-import { stringSplitterHandler } from "../../components/features/stringSplitter";
-import { sweetFailureProvider, sweetTopSmallSuccessAlert } from "../../../libs/sweetAlert";
-import { verifiedMemberData } from "../../apiServices/verified";
-import Definer from "../../../libs/Definer";
-import { Transaction } from "../../../libs/types/bank";
-import OrderPaused from "./orderPaused";
-import OrderProcess from "./orderProcess";
-import OrderFinished from "./orderFinished";
-import TransactionServiceApi from "../../apiServices/transactionServiceApi";
-import { DownToUpBtn } from "../../components/features/downToUpBtn";
 
 //SLICE
 const actionDispatch = (dispatch: Dispatch) => ({

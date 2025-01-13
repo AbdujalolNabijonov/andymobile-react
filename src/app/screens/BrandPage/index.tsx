@@ -1,20 +1,21 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Box,  Container, Pagination, PaginationItem, Stack } from "@mui/material"
+import { useHistory } from "react-router-dom";
+import { Box, Container, Pagination, PaginationItem, Stack } from "@mui/material"
 import { ArrowBack, ArrowForward, Favorite, RemoveRedEye, Comment } from "@mui/icons-material"
 import "../../css/brandsPage.css";
 
 //REDUX
 import { createSelector } from "reselect"
 import { Dispatch } from "@reduxjs/toolkit";
-import { Brand } from "../../../libs/types/member";
 import { setTargetBrands } from "./slice";
 import { retrieveTargetBrands } from "./selector";
 import { useDispatch, useSelector } from "react-redux";
+
 import BrandsServiceApi from "../../apiServices/brandsServiceApi";
-import { serverApi } from "../../../libs/config";
-import { useHistory } from "react-router-dom";
 import { handleLikeItem } from "../../components/features/likeItem";
 import { DownToUpBtn } from "../../components/features/downToUpBtn";
+import { Brand } from "../../libs/types/member";
+import { serverApi } from "../../libs/config";
 
 //SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -101,10 +102,11 @@ const BrandPage = () => {
                     gap={"10px"}
                     justifyContent={"start"}
                 >
-                    {targetBrands.map((ele: Brand, index) => {
+                    {targetBrands.map((ele: Brand, index: number) => {
                         const image_url = `${serverApi}/${ele.mb_image}`
                         return (
                             <div
+                                key={ele._id}
                                 className={load ? "card aos-animate" : "card"}
                                 data-aos="fade-right"
                                 data-aos-delay={150 * index}
