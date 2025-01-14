@@ -16,6 +16,7 @@ import { serverApi } from "../../libs/config";
 import { createSelector } from "reselect"
 import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
+import Definer from "../../libs/Definer";
 
 //SELECTOR
 const retrieveWishListItems = createSelector(
@@ -29,12 +30,6 @@ const WishList = (props: any) => {
     const refs: any = useRef([]);
     const history = useHistory();
 
-    //LifeCircle
-    useEffect(() => {
-        if (localStorage.getItem("value")) {
-            localStorage.setItem("value", JSON.stringify(null))
-        }
-    }, [])
 
     //Handle
     async function handleChangeQnt(e: any, product: WishListItem, modifier: number) {

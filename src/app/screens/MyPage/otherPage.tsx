@@ -47,7 +47,6 @@ export const OtherPage = (props: any) => {
     const { setChosenMember, setChosenBlog, setTargetReviews } = actionDispatch(useDispatch());
     const { chosenMember } = useSelector(retrieveChosenMember);
     const [reBuild, setRebuild] = useState<Date>(new Date());
-    let localValue: any;
     const history = useHistory()
     //React Hook
     useEffect(() => {
@@ -58,8 +57,6 @@ export const OtherPage = (props: any) => {
         }
     }, [])
     useEffect(() => {
-        const localValueJson: any = localStorage.getItem("value")
-        localValue = JSON.parse(localValueJson)
         if (props.mb_id === verifiedMemberData?._id) {
             if (props.art_id) {
                 history.push(`/user-page/?art_id=${props.art_id}`)
@@ -70,13 +67,6 @@ export const OtherPage = (props: any) => {
             //Calling chosenMember
             const memberServiceApi = new MemberServiceApi();
             memberServiceApi.getChosenMember(props.mb_id).then((data: Member) => setChosenMember(data)).catch(err => console.log(err))
-        }
-        if (localValue?.value) {
-            setValue(localValue.value.toString())
-            props.setRebuild(new Date())
-        }
-        return () => {
-            localStorage.setItem("value", JSON.stringify(null))
         }
     }, [reBuild])
 

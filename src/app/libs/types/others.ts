@@ -9,9 +9,9 @@ export interface searchBlogs {
 }
 
 export interface searchTargetBrands {
+    page?: number;
     limit: number;
     order?: string;
-    page?: number;
     search?: string;
     random?: boolean;
 }

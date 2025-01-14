@@ -34,10 +34,9 @@ const HomeSortProducts = (props: any) => {
     const [searchObj, setSearchObj] = useState<ProductSearchObject>({
         page: 1,
         limit: 4,
-        order: "sale",
+        order: "product_discount",
         direction:Direction.DESC,
         search:{
-
         }
 
     })

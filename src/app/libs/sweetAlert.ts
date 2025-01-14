@@ -1,7 +1,7 @@
 import Swal from "sweetalert2"
 import Definer from "./Definer"
 
-export const sweetErrorHandling = async (err: any, sweet_off: boolean = false) => {
+export const sweetErrorHandling = async (err: any, sweet_off: boolean = false, duration:number=0) => {
     let error_message = err.message.includes("att") ? err.message : Definer.general_err1;
     if (sweet_off) {
         alert(error_message);
@@ -9,7 +9,8 @@ export const sweetErrorHandling = async (err: any, sweet_off: boolean = false) =
         await Swal.fire({
             icon: "error",
             text: error_message.split(":")[1],
-            showConfirmButton: false
+            showConfirmButton: false,
+            timer:duration
         })
     }
 }

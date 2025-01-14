@@ -16,6 +16,7 @@ import { handleLikeItem } from "../../components/features/likeItem";
 import { DownToUpBtn } from "../../components/features/downToUpBtn";
 import { Brand } from "../../libs/types/member";
 import { serverApi } from "../../libs/config";
+import { Direction } from "../../libs/enums/product";
 
 //SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -39,10 +40,12 @@ const BrandPage = () => {
     const history = useHistory()
     const refs: any = useRef([])
     //Three circle Hook
+    useEffect(()=>{
+        window.scrollTo(0, 0)
+    },[])
     useEffect(() => {
         const brandsServiceApi = new BrandsServiceApi()
         brandsServiceApi.getTargetBrands(searchObj).then(data => setTargetBrands(data)).catch(err => console.log(err))
-        window.scrollTo(0, 0)
         setLoad(true)
     }, [searchObj, rebuild])
 
@@ -132,7 +135,7 @@ const BrandPage = () => {
                                 <div
                                     className="brand_img"
                                     onClick={() => {
-                                        history.push(`/products/${ele._id}`)
+                                        history.push(`/products/?input=${JSON.stringify({ page: 1, limit: 6, order: "createdAt", direction: Direction.DESC, search: { company_id: ele._id } })}`)
                                     }}>
                                     <img src={image_url} alt="" />
                                 </div>

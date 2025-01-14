@@ -12,27 +12,27 @@ import { serverApi } from "../../libs/config"
 
 //redux
 import { Dispatch } from "@reduxjs/toolkit";
-import { setRandomNewProducts } from "./slice";
 import { createSelector } from "reselect";
-import { retrieveRandomProducts } from "./selector"
 import { useDispatch, useSelector } from "react-redux"
 import { Direction } from "../../libs/enums/product"
+import { setRelatedProducts } from "./slice"
+import { relatedProductsRetriever } from "./selector"
 
 //REDUX Slice
 const actionDispatch = (dispatch: Dispatch) => ({
-    setRandomNewProducts: (data: Product[]) => dispatch(setRandomNewProducts(data))
+    setRelatedProducts: (data: Product[]) => dispatch(setRelatedProducts(data))
 })
 
 //REDUX SELECTOR
-const randomNewProductsRetriever = createSelector(
-    retrieveRandomProducts,
-    (randomNewProducts) => ({ randomNewProducts })
+const relatedProductsRetrieve= createSelector(
+    relatedProductsRetriever,
+    (relatedProducts) => ({ relatedProducts })
 )
 
-export const NewProducts = (props: any) => {
+export const RelatedProducts = (props: any) => {
     //Initializations
-    const { setRandomNewProducts } = actionDispatch(useDispatch())
-    const { randomNewProducts } = useSelector(randomNewProductsRetriever)
+    const { setRelatedProducts} = actionDispatch(useDispatch())
+    const { relatedProducts } = useSelector(relatedProductsRetrieve)
     const history = useHistory();
     const location = useLocation()
     const refs: any = useRef([])
@@ -41,7 +41,7 @@ export const NewProducts = (props: any) => {
     useEffect(() => {
         const productServiceApi = new ProductServiceApi();
         productServiceApi.getTargetProducts({ page: 1, limit: 10, order: "createdAt", direction: Direction.DESC, search: {} })
-            .then(data => setRandomNewProducts(data)).catch(err => {
+            .then(data => setRelatedProducts(data)).catch(err => {
                 console.log(err)
             })
     }, [])
@@ -76,11 +76,10 @@ export const NewProducts = (props: any) => {
                 className="product-swiper cards"
                 style={{ cursor: "pointer" }}
             >
-                {randomNewProducts.map((ele: Product, index: number) => {
+                {relatedProducts.map((ele: Product, index: number) => {
                     let image_url_1 = `${serverApi}/${ele.product_images[0]}`,
                         image_url_2 = ele.product_images[1] ? `${serverApi}/${ele.product_images[1]}` : `/pictures/products/${ele.product_color}_phone.webp`,
                         discount_price = ele.product_price - (ele.product_price * (ele.product_discount / 100))
-                        console.log(randomNewProducts)
                     return (
                         <SwiperSlide
                             className="swiper-card"
@@ -112,7 +111,7 @@ export const NewProducts = (props: any) => {
                                             <Favorite
                                                 className="heart_mobile_size"
                                                 style={{ fill: ele?.me_liked && ele?.me_liked[0]?.mb_id ? "red" : "white" }}
-                                                onClick={(e: any) => { handleLikeItem(e, ele, "PRODUCT", refs, props.setRebuild, true) }} />
+                                                onClick={(e: any) => { handleLikeItem(e, ele, "PRODUCT", refs, true) }} />
                                         </div>
                                         <div className="rounded btn btn-outline-warning border-0" onClick={() => props.handleSaveBasket(ele)}>
                                             <i className="fa-brands fa-shopify"></i>

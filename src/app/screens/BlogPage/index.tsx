@@ -43,6 +43,7 @@ const BlogPage = () => {
             .catch(err => console.log(err))
     }, [searchObj])
 
+
     //Handlers
     function handleValue(num: string) {
         setValue(num)

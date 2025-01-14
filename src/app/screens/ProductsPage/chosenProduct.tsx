@@ -37,6 +37,8 @@ import { chosenProductRetriever, productReviewRetriever } from "./selector";
 
 //KAKAO
 import KakaoMap from "../../components/features/kakaoMap";
+import { Direction } from "../../libs/enums/product";
+import { RelatedProducts } from "./relatedProduct";
 
 //SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -221,6 +223,7 @@ export const ChosenProduct = (props: any) => {
                                     style={{ marginTop: "30px" }}
                                     className="p-4 mb-4"
                                     onClick={(e) => handleSelectImage(e, image_url, index)}
+                                    key={index}
                                 >
                                     <Box
                                         className={chosenProductImgIndex === index ? "product_swiper_item chosen_product_img" : "product_swiper_item"}
@@ -233,7 +236,7 @@ export const ChosenProduct = (props: any) => {
                     </Swiper>
                     <Box className="main_pic_box">
                         <ReactImageMagnify
-                            className="w-100"
+
                             {...{
                                 smallImage: {
                                     alt: "Wristwatch by Ted Baker London",
@@ -534,11 +537,7 @@ export const ChosenProduct = (props: any) => {
                         title={chosenProduct?.company_data?.mb_nick}
                     />
                 </Box>
-                <NewProducts
-                    searchProducts={{ limit: 5, order: "createdAt", random: true, contractMonth: [] }}
-                    handleSaveBasket={props.handleSaveBasket}
-                    setRebuild={props.setAmountRebuild}
-                />
+                <RelatedProducts/>
             </Box>
             <DownToUpBtn address={"#"} />
         </Box>

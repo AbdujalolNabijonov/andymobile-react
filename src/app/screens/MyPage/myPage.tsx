@@ -26,6 +26,7 @@ import { MemberServiceApi } from "../../apiServices/memberServiceApi"
 import { Dispatch } from "@reduxjs/toolkit"
 import { setChosenBlog, setChosenMember, setTargetReviews } from "./slice"
 import { chosenMemberRetrieve } from "./selector"
+import { useHistory, useLocation } from "react-router-dom"
 
 //Slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -42,12 +43,19 @@ const retrieveChosenMember = createSelector(
 
 export const MyPage = (props: any) => {
     //Initilizations
-    const [value, setValue] = useState<string>("1");
+    const { search } = useLocation()
+    const searchParams = new URLSearchParams(search)
+    const valueSec = searchParams.get("section") ? JSON.parse(searchParams.get("section") as string) : "1"
+    const [value, setValue] = useState<string>(valueSec);
+
     const { setChosenMember, setChosenBlog, setTargetReviews } = actionDispatch(useDispatch());
     const { chosenMember } = useSelector(retrieveChosenMember);
     const [reBuild, setRebuild] = useState<Date>(new Date());
-    let localValue: any;
+    const history = useHistory()
     //React Hook
+    useEffect(() => {
+        history.push(`/user-page/?section=${JSON.stringify(value)}`)
+    }, [value])
     useEffect(() => {
         if (props.art_id) {
             handleChosenBlogData(props.art_id)
@@ -55,21 +63,12 @@ export const MyPage = (props: any) => {
         }
     }, [])
     useEffect(() => {
-        const localValueJson: any = localStorage.getItem("value")
-        localValue = JSON.parse(localValueJson)
-        if (localValue?.value) {
-            setValue(localValue.value.toString())
-            props.setRebuild(new Date())
-        }
         if (!verifiedMemberData) {
-            sweetFailureProvider(Definer.auth_err1, false, true)
+            sweetFailureProvider(Definer.auth_err1, true, true)
         }
         //Calling chosenMember
         const memberServiceApi = new MemberServiceApi();
         memberServiceApi.getChosenMember(verifiedMemberData?._id).then(data => setChosenMember(data)).catch(err => console.log(err))
-        return () => {
-            localStorage.setItem("value", JSON.stringify(null))
-        }
     }, [reBuild])
 
     async function handleChosenBlogData(id: string) {

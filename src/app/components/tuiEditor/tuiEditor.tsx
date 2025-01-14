@@ -48,7 +48,7 @@ export const TuiEditor = (props: any) => {
 
     async function handleSubmitBlog() {
         try {
-            blogData.blog_context = editorRef.current["context"]?.getInstance().getHTML();;
+            blogData.blog_context = editorRef.current?.getInstance().getHTML();;
             blogData.blog_title = editorRef.current["title"].value
             setBlogData({ ...blogData })
             assert.ok(
@@ -116,7 +116,7 @@ export const TuiEditor = (props: any) => {
                 hooks={{
                     addImageBlobHook: async (image: any, callBack: any) => {
                         const imageUploader = await uploadImage(image)
-                        callBack(null, imageUploader)
+                        callBack(imageUploader)
                         return false
                     },
                 }}

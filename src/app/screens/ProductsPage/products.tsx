@@ -47,16 +47,17 @@ export const Products = (props: any) => {
                     let image_urls = [ele.product_images[0], ele.product_images[1]]
                     let pictures;
                     if (ele._id === productKey) {
-                        for (let product of ele?.product_related_colors) {
-                            if (product.product_color === chosenColor) {
-                                pictures = product.product_images
+                            for (let product of ele?.product_related_colors) {
+                                if (product.product_color === chosenColor) {
+                                    pictures = product.product_images
+                                }
                             }
-                        }
                     } else {
                         pictures = image_urls
                     }
                     return (
                         <Stack
+                            key={ele._id}
                             className={loaded ? "product_item mb-3 aos-animate opacity-1" : ""}
                             data-aos="fade-up"
                             data-aos-delay={150 * index}
@@ -75,8 +76,10 @@ export const Products = (props: any) => {
                                 }}>
                                     <Favorite style={ele.me_liked && ele.me_liked[0]?.mb_id ? { fill: "red" } : { fill: "white" }} />
                                 </button>
-                                <img src={`${serverApi}/${pictures[0]}`} alt="phone" className="product_img_1 w-100" />
-                                <img src={`${serverApi}/${pictures[1]}`} alt="phone" className="product_img_2 w-100" />
+                                <Box sx={{ width: "70%", margin: "0 auto", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                    <img src={`${serverApi}/${pictures[0]}`} alt="phone" className="product_img_1" width={100} />
+                                    <img src={`${serverApi}/${pictures[1]}`} alt="phone" className="product_img_2" width={100} />
+                                </Box>
                             </Box>
                             <div
                                 className="product_item-info p-2"
@@ -86,41 +89,62 @@ export const Products = (props: any) => {
                                 <div className="select_color" onClick={(e) => e.stopPropagation()}>
                                     <select
                                         className="product_colors form-select"
-                                        key={index}
                                         onChange={(e) => {
                                             e.stopPropagation()
                                             handleColor(e, ele._id)
                                         }
                                         }
                                     >
-                                        {ele.product_related_colors ? ele.product_related_colors.map((product: Product, index: number) => (
-                                            <option value={product.product_color} >{product.product_color}</option>
-                                        )) : (<option value={ele.product_color} disabled selected>{ele.product_color}</option>)}
+                                        {ele.product_related_colors ? ele.product_related_colors.map((product: Product, index: number) => {
+                                            if (props.searchObj.search.color && product.product_color === props.searchObj.search.color) {
+                                                return (
+                                                    <option key={product._id} value={product.product_color} >{product.product_color}</option>
+                                                )
+                                            } else if (props.searchObj.search.color && product.product_color !== props.searchObj.search.color) {
+                                                return (
+                                                    null
+                                                )
+                                            } else {
+                                                return (
+                                                    <option key={product._id} value={product.product_color} >{product.product_color}</option>
+                                                )
+                                            }
+                                        }) : (<option value={ele.product_color} disabled selected>{ele.product_color}</option>)}
                                     </select>
                                     <Stack
                                         flexDirection={"row"}
                                         gap={"3px"}
                                     >
                                         {
-                                            ele.product_related_colors ? ele.product_related_colors.map((product: Product, index: number) => (
-                                                <div style={{
-                                                    width: "15px",
-                                                    height: "15px",
-                                                    borderRadius: '50%',
-                                                    boxShadow: "0 0 3px black",
-                                                    border: chosenColor === `${product.product_color}` && productKey === ele._id ? "2px solid #D17237" : "",
-                                                    backgroundColor: `${product.product_color}`
-                                                }}></div>
-                                            )) : (
-                                                <div style={{
-                                                    width: "15px",
-                                                    height: "15px",
-                                                    borderRadius: '50%',
-                                                    boxShadow: "0 0 3px black",
-                                                    border: "2px solid #D17237",
-                                                    backgroundColor: `${ele.product_color}`
-                                                }}></div>
-                                            )
+                                            ele.product_related_colors.map((product: Product, index: number) => {
+                                                if (props.searchObj.search.color && product.product_color === props.searchObj.search.color) {
+                                                    return (
+                                                        <div style={{
+                                                            width: "15px",
+                                                            height: "15px",
+                                                            borderRadius: '50%',
+                                                            boxShadow: "0 0 3px black",
+                                                            border: chosenColor === `${product.product_color}` && productKey === ele._id ? "2px solid #D17237" : "",
+                                                            backgroundColor: `${product.product_color}`
+                                                        }}></div>
+                                                    )
+                                                } else if (props.searchObj.search.color && product.product_color !== props.searchObj.search.color) {
+                                                    return (
+                                                        null
+                                                    )
+                                                } else {
+                                                    return (
+                                                        <div style={{
+                                                            width: "15px",
+                                                            height: "15px",
+                                                            borderRadius: '50%',
+                                                            boxShadow: "0 0 3px black",
+                                                            border: chosenColor === `${product.product_color}` && productKey === ele._id ? "2px solid #D17237" : "",
+                                                            backgroundColor: `${product.product_color}`
+                                                        }}></div>
+                                                    )
+                                                }
+                                            })
                                         }
                                     </Stack>
                                 </div>

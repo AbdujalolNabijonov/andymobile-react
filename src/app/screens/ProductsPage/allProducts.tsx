@@ -54,28 +54,25 @@ const AllProducts = ({ initialInput, ...props }: any) => {
     const { targetProducts } = useSelector(retrieveTargetProducts)
     const { allBrands } = useSelector(retrieveAllBrands)
     const { targetReviews } = useSelector(retrieverTargetReviews)
-    const { company_id } = useParams<{ company_id: string }>()
     const [rebuild, setRebuild] = useState<Date>(new Date())
 
     const location = useLocation()
     const history = useHistory()
     const searchQuery = new URLSearchParams(location.search)
-    const inputJson = searchQuery.get("input")
-    const [searchObj, setSearchObj] = useState<ProductSearchObject | any>(JSON.parse(inputJson as string) ??
-    {
-        page: 1,
-        limit: 6,
-        order: "createdAt",
-        direction: Direction.DESC,
-        search: {
-            company_id: company_id,
-            priceRange: {
-                start: 40000,
-                end: 4000000
-            },
+    const input = searchQuery.get("input") ?
+        JSON.parse(searchQuery.get("input") as string) : {
+            page: 1,
+            limit: 6,
+            order: "product_likes",
+            direction: Direction.DESC,
+            search: {
+                priceRange: {
+                    start: 40000,
+                    end: 4000000
+                },
+            }
         }
-    }
-    )
+    const [searchObj, setSearchObj] = useState<ProductSearchObject | any>(input);
 
     useEffect(() => {
         history.push(`/products/?input=${JSON.stringify(searchObj)}`)
@@ -83,6 +80,8 @@ const AllProducts = ({ initialInput, ...props }: any) => {
     //React Hook 
     useEffect(() => {
         window.scrollTo(0, 0)
+    }, [])
+    useEffect(() => {
         //Target Products
         const productServiceApi = new ProductServiceApi();
         productServiceApi.getTargetProducts(searchObj).then(data => setTargetProducts(data)).catch(err => console.log(err))
@@ -96,7 +95,7 @@ const AllProducts = ({ initialInput, ...props }: any) => {
 
         //Target reviews
         const communityServiceApi = new CommunityServiceApi();
-        communityServiceApi.getProductReviews(company_id).then((data: Review[]) => setTargetReviews(data)).catch(err => console.log(err))
+        communityServiceApi.getProductReviews(searchObj.search.company_id).then((data: Review[]) => setTargetReviews(data)).catch(err => console.log(err))
     }, [searchObj, rebuild])
 
     //Handle 
@@ -122,18 +121,39 @@ const AllProducts = ({ initialInput, ...props }: any) => {
                                 className="form-select"
                                 id="order_item"
                                 onChange={(e) => {
-                                    searchObj.order = e.target.value
+                                    switch (e.target.value) {
+                                        case "lowToHigh":
+                                            searchObj.order = "product_price";
+                                            searchObj.direction = Direction.ASC
+                                            break;
+                                        case "highToLow":
+                                            searchObj.order = "product_price";
+                                            searchObj.direction = Direction.DESC
+                                            break;
+                                        case "newToOld":
+                                            searchObj.order = "createdAt";
+                                            searchObj.direction = Direction.DESC
+                                            break;
+                                        case "oldToNew":
+                                            searchObj.order = "createdAt";
+                                            searchObj.direction = Direction.ASC
+                                            break;
+                                        default:
+                                            searchObj.order = e.target.value
+                                            searchObj.direction = Direction.DESC;
+                                            break;
+                                    }
                                     setSearchObj({ ...searchObj })
                                 }}
                             >
-                                <option value="like">Best Selling</option>
-                                <option value="view">Popular</option>
-                                <option value="new">New</option>
-                                <option value="sale">Sale</option>
-                                <option value="lowToHigh">Price, low to high</option>
-                                <option value="highToLow">Price, high to low</option>
-                                <option value="newToOld">Date, new to old</option>
-                                <option value="oldToNew">Date, old to new</option>
+                                <option value="product_likes" selected={searchObj.order === "product_likes"}>Best Selling</option>
+                                <option value="product_views" selected={searchObj.order === "product_views"}>Popular</option>
+                                <option value="createdAt" selected={searchObj.order === "createdAt"}>New</option>
+                                <option value="product_discount" selected={searchObj.order === "product_discount"}>Sale</option>
+                                <option value="lowToHigh" selected={searchObj.order === "lowToHigh"}>Price, low to high</option>
+                                <option value="highToLow" selected={searchObj.order === "highToLow"}>Price, high to low</option>
+                                <option value="newToOld" selected={searchObj.order === "newToOld"}>Date, new to old</option>
+                                <option value="oldToNew" selected={searchObj.order === "oldToNew"}>Date, old to new</option>
                             </select>
                         </Box>
                         <Box className="search_input">
@@ -159,7 +179,7 @@ const AllProducts = ({ initialInput, ...props }: any) => {
                         searchObj={searchObj}
                         setSearchObj={setSearchObj}
                         allBrands={allBrands}
-                        company_id={company_id}
+                        company_id={searchObj.search.company_id}
                     />
                     <Products
                         targetProducts={targetProducts}
@@ -171,7 +191,7 @@ const AllProducts = ({ initialInput, ...props }: any) => {
                     />
                 </Stack>
                 {
-                    company_id ? (
+                    searchObj.search?.company_id ? (
                         <Box>
                             <div className="fs-1 fw-bold text-center mt-5 mb-3">Reviewing Company</div>
                             {targetReviews && targetReviews[0] ? (
@@ -186,7 +206,7 @@ const AllProducts = ({ initialInput, ...props }: any) => {
                                     There is no comments yet!
                                 </div>
                             )}
-                            <ReviewWriting product_id={company_id} item_group={"MEMBER"} setRebuildReview={setRebuild} />
+                            <ReviewWriting product_id={searchObj.search?.company_id} item_group={"MEMBER"} setRebuildReview={setRebuild} />
                         </Box>
 
                     ) : null

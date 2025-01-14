@@ -50,9 +50,8 @@ export const HomeProducts = (props: HomeProductsProps) => {
                         key={index}
                     >
                         <Stack className="card_img" alignItems={"center"}>
-                            <img src={image_url_1} alt="" className="product_img_1 w-100" />
-                            <img src={image_url_2} alt="" className="product_img_2 w-100" />
-                            <div className="product_badge">{searchObj.order.toUpperCase()}</div>
+                            <img src={image_url_1} alt="" className="product_img_1" width={100} />
+                            <img src={image_url_2} alt="" className="product_img_2" width={100} />
                         </Stack>
                         <Box className="card__overlay">
                             <Box className="card__header">

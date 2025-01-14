@@ -20,9 +20,6 @@ const ProductsPage = (props: any) => {
                             setAmountRebuild={props.setRebuild}
                         />
                     </Route>
-                    <Route path={`${location}/:company_id`}>
-                        <AllProducts setRebuild={props.setRebuild} />
-                    </Route>
                     <Route path={`${location}`}>
                         <AllProducts setRebuild={props.setRebuild} />
                     </Route>

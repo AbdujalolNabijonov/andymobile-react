@@ -40,9 +40,6 @@ const Posts = (props: any) => {
 
     //React 3 circle Hook
     useEffect(() => {
-        if (localStorage.getItem('value')) {
-            localStorage.setItem("value", JSON.stringify(null))
-        }
         //Calling TargetBlogs
         const communityServiceApi = new CommunityServiceApi();
         communityServiceApi.getTargetBlogs(searchObj).then(data => setTargetBlogs(data)).catch(err => console.log(err))

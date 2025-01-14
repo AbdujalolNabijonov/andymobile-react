@@ -50,27 +50,12 @@ const Footer = () => {
                                 <ul>
                                     <li><a href="/faq">FAQ</a></li>
                                     <li><a href="/user-page">MY SETTINGS</a></li>
-                                    <li
-                                        className="text-light"
-                                        style={{ cursor: "pointer" }}
-                                        onClick={() => {
-                                            localStorage.setItem("value", JSON.stringify({ value: 3 }))
-                                            history.push("/user-page")
-                                            window.location.reload()
-                                        }}
-                                    >
-                                        WISHLIST
+                                    <li>
+                                        <a href={`/user-page/?section=${JSON.stringify("3")}`}>WISHLIST</a>
+                                        
                                     </li>
-                                    <li
-                                        className="text-light"
-                                        style={{ cursor: "pointer" }}
-                                        onClick={() => {
-                                            localStorage.setItem("value", JSON.stringify({ value: 7 }))
-                                            history.push("/user-page")
-                                            window.location.reload()
-                                        }}
-                                    >
-                                        MY POSTS
+                                    <li>
+                                        <a href={`/user-page/?section=${JSON.stringify("7")}`}>MY POSTS</a>
                                     </li>
                                 </ul>
                             </Stack>

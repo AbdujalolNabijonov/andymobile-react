@@ -37,7 +37,7 @@ export const HomeNavbar = (props: any) => {
         //@ts-ignore
         progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     };;
-    
+
     return (
         <Box className="HomePage">
             <Stack
@@ -191,20 +191,23 @@ export const HomeNavbar = (props: any) => {
                             </Box>
                         </Stack>
                         <Stack className="nav-features fs-5 gap-4" flexDirection={"row"} alignItems={"center"}>
-                            <Box className="nav-item basket_btn">
-                                <button
-                                    className={scrolled ? "btn btn-outline-secondary border-0 position-relative" : "btn btn-outline-secondary border-0 position-relative"}
-                                    onClick={() => {
-                                        localStorage.setItem("value", JSON.stringify({ value: 3 }))
-                                        history.push("/user-page")
-                                    }}
-                                >
-                                    <i className="fa-solid fa-thumbs-up" title="Liked Products"></i>
-                                    <span className="position-absolute nav-badge top-0 start-100 translate-middle bg-danger border border-light rounded-circle text-center">
-                                        {props.likedItemAmount}
-                                    </span>
-                                </button>
-                            </Box>
+                            {
+                                verifiedMemberData ? (
+                                    <Box className="nav-item basket_btn">
+                                        <button
+                                            className={scrolled ? "btn btn-outline-secondary border-0 position-relative" : "btn btn-outline-secondary border-0 position-relative"}
+                                            onClick={() => {
+                                                history.push(`/user-page/?section=${JSON.stringify("3")}`)
+                                            }}
+                                        >
+                                            <i className="fa-solid fa-thumbs-up" title="Liked Products"></i>
+                                            <span className="position-absolute nav-badge top-0 start-100 translate-middle bg-danger border border-light rounded-circle text-center">
+                                                {props.likedItemAmount}
+                                            </span>
+                                        </button>
+                                    </Box>
+                                ) : null
+                            }
                             <Box className="nav-item basket_btn">
                                 <button
                                     className={scrolled ? "btn btn-outline-secondary border-0 position-relative" : "btn btn-outline-secondary border-0 position-relative"}
