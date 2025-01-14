@@ -87,7 +87,7 @@ export const HomeNavbar = (props: any) => {
                                     of Galaxy AI. From researching on the spot to capturing every detail of your projects day or night,
                                     unleash new ways to stay productive, collaborate and more.</div>
                                 <button className="btn btn-dark text-light fw-bold" onClick={() => {
-                                    history.push("/products/product/66310f10628274d1bb980693")
+                                    history.push("/products/product/678634fea6636b4671869797")
                                 }}>
                                     Purchase
                                 </button>
@@ -108,7 +108,7 @@ export const HomeNavbar = (props: any) => {
                                     power adapters and computer ports is included.
                                 </div>
                                 <button className="btn btn-secondary text-light fw-bold" onClick={() => {
-                                    history.push("/products/product/66310c22628274d1bb980686")
+                                    history.push("/products/product/67863852a6636b46718697a8")
                                 }}>
                                     Purchase
                                 </button>
@@ -127,7 +127,7 @@ export const HomeNavbar = (props: any) => {
                                     <a className="nav-link pt-4"> <span>LEARN MORE</span><i className="fa-solid ms-1 fa-arrow-up-right-from-square"></i></a>
                                     <button className="mt-4 btn btn-secondary"
                                         onClick={() => {
-                                            history.push("/products/product/66311b1d628274d1bb9806e5")
+                                            history.push("/products/product/67863b95a6636b46718697b2")
                                         }}
                                     >PURCHASE</button>
                                 </div>
