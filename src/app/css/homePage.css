@@ -115,7 +115,7 @@
 }
 
 .card-img {
-    background-color:#FDFDFC;
+    background-color: #FDFDFC;
     border: 1px solid gray;
     display: flex;
     padding: 20px 0;
@@ -127,7 +127,7 @@
 
 .card-img>img {
     height: 180px;
-    width: 100px;
+    width: 100%;
 }
 
 .card-img div:last-child {
@@ -415,6 +415,8 @@
     transition: opacity .6s ease-in-out;
     top: 20px;
     cursor: pointer;
+    width: 60%;
+    height: 80%;
 }
 
 .product_fade:not(:hover) .product_img_1 {
@@ -426,7 +428,7 @@
 }
 
 .card-img .card-img_badge {
-    left: -200px
+    left: -100px
 }
 
 .product_card .product_badge {
@@ -434,7 +436,7 @@
     left: 0;
     top: 40px;
     background-color: #FBE285;
-    padding: 5px 10px;
+    padding: 5px 20px;
     border-radius: 0 20px 20px 0;
     color: rgb(105, 104, 104);
     font-weight: bold;
@@ -667,9 +669,7 @@
     }
 
     .slider-card {
-        height: 100px !important;
-        width: 120px !important;
-        border-radius: 0;
+        border-radius: 5px;
     }
 
     .card-body {
@@ -712,8 +712,9 @@
     }
 
     .card-img {
-        height: 140px !important;
         display: flex;
+        width: 80px;
+        height: 130px !important;
         align-items: center;
         border-radius: 0 !important;
     }
@@ -727,12 +728,17 @@
         align-items: center;
         left: 0px !important;
     }
-
-
-    .swiper-card .card-img>img {
-        width: auto !important;
-        height: 100px;
+    .product_img_1,
+    .product_img_2 {
+        position: absolute;
+        opacity: 0;
+        transition: opacity .6s ease-in-out;
+        top: 10px;
+        cursor: pointer;
+        width: 70%;
+        height: 80%;
     }
+
 
     .card-features {
         top: 10px;
@@ -748,7 +754,8 @@
     .card-features div i {
         font-size: 10px;
     }
-    .product_sort{
+
+    .product_sort {
         display: flex !;
         justify-content: space-evenly !important;
         border-radius: 0 !important;
@@ -756,9 +763,11 @@
         width: 90% !important;
         padding: 0px !important;
     }
-    .product_sort .color-select{
+
+    .product_sort .color-select {
         padding: 0 !important;
     }
+
     .product_sort .color-select>span {
         font-size: 5px;
         font-weight: bold;
@@ -771,7 +780,8 @@
         height: 20px;
         width: 20px;
     }
-    .color-select button img{
+
+    .color-select button img {
         width: 10px !important;
         height: 15px;
     }
@@ -781,7 +791,7 @@
         background-image: url("../../../public/icons/monthly_payment.jpg");
         background-size: contain;
         background-repeat: no-repeat;
-        height: auto;
+        height: 300px;
         padding: 20px 0;
     }
 
@@ -883,7 +893,7 @@
         font-size: 10px !important;
         padding: 0 !important;
     }
-    
+
     .title {
         font-size: 13px !important;
         margin-bottom: 10px;

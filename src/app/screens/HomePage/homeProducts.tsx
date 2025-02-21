@@ -50,8 +50,8 @@ export const HomeProducts = (props: HomeProductsProps) => {
                         key={index}
                     >
                         <Stack className="card_img" alignItems={"center"}>
-                            <img src={image_url_1} alt="" className="product_img_1" width={100} />
-                            <img src={image_url_2} alt="" className="product_img_2" width={100} />
+                            <img src={image_url_1} alt="" className="product_img_1"/>
+                            <img src={image_url_2} alt="" className="product_img_2" />
                         </Stack>
                         <Box className="card__overlay">
                             <Box className="card__header">

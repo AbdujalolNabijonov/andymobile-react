@@ -88,18 +88,16 @@ export const NewProducts = (props: any) => {
                         >
                             <Box className={"slider-card border-0"} id="card">
                                 <div className="card-img product_fade">
-                                    <Box sx={{display:"flex", justifyContent:"center", alignItems:"center",height:"80%"}}>
+                                    <Box  sx={{display:"flex", justifyContent:"center",height:"80%"}}>
                                         <img
                                             src={image_url_1}
                                             alt="phone1"
                                             className="product_img_1"
-                                            width={100}
                                         />
                                         <img
                                             src={image_url_2}
                                             alt="2"
                                             className="product_img_2"
-                                            width={100}
                                         />
                                     </Box>
                                     <Stack
