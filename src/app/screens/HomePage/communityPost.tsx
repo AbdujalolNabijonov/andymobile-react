@@ -54,7 +54,7 @@ function CommunityPosts(props: any) {
                 style={{ padding: "20px 0" }}
             >
                 {communityPost.map((blog: Blog, index: number) => {
-                    const image_url = blog.blog_images[0] ? `${serverApi}/${blog.blog_images[0]}` : "/pictures/community/cute_girl.jpg";
+                    const image_url = blog.blog_images[0] ? `${serverApi}/${blog.blog_images[0]}` : "/pictures/icons/defaultimg.svg";
                     const user_image = blog.mb_data.mb_image ? `${serverApi}/${blog.mb_data.mb_image}` : "/pictures/auth/default_user.svg"
                     return (
                         <Box className={"post_card"} onClick={() => handleOpenPost(blog)} key={index}>
