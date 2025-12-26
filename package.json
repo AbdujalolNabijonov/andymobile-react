@@ -66,7 +66,7 @@
   "scripts": {
     "start": "set NODE_ENV=development&& react-scripts start",
     "build": "react-scripts build",
-    "start:prod": "NODE_ENV=production PORT=4001 serve -s build",
+    "start:prod": "NODE_ENV=production PORT=3000 serve -s build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
